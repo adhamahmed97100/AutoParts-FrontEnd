@@ -70,7 +70,7 @@ The website provides a seamless digital experience for:
 ---
 
 ### 🤖 AI Chatbot
-![Chatbot](assets/screenshots/chatbot.png)git add README.md
+![Chatbot](assets/screenshots/chatbot.png)
 
 
 ---

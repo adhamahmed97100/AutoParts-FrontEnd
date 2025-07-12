@@ -1,0 +1,56 @@
+<div class="car-brands-wrapper">
+  <h2>Find out what fits your type of car</h2>
+  @if(!showAllBrands){
+  <div class="carousel-container">
+    <button class="nav-button prev" (click)="scrollLeft()">
+      <span aria-hidden="true"><i class="fa-solid fa-backward"></i></span>
+    </button>
+
+    <div class="brands-container">
+      @for ( brand of carBrands; track brand.id) {
+      <div class="brand-item" (click)="selectBrand(brand.id)">
+        <div class="brand-logo-container">
+          <img
+            [lazyLoad]="IP + '/images/CarBrand/' + brand.image"
+            [defaultImage]="'Loding.svg'"
+            [alt]="brand.name"
+            class="brand-logo"
+          />
+        </div>
+      </div>
+      }
+    </div>
+
+    <button class="nav-button next" (click)="scrollRight()">
+      <span aria-hidden="true"><i class="fa-solid fa-forward"></i></span>
+    </button>
+  </div>
+
+  } @if(showAllBrands){
+  <div class="carousel-container">
+    <div class="brands-grid">
+      @for (brand of carBrands; track brand.id) {
+      <div
+        (click)="selectBrand(brand.id)"
+        class="container brand-logo-container"
+      >
+        <img
+          [lazyLoad]="IP + '/images/CarBrand/' + brand.image"
+          [defaultImage]="'Loding.svg'"
+          [alt]="brand.name"
+          class="brand-logo"
+        />
+      </div>
+      }
+    </div>
+  </div>
+  }
+  <div class="show-all-container">
+    <button (click)="ShowAll()" class="show-all-link">
+      @if(!showAllBrands){ Show all Cars
+      <span class="arrow"><i class="fa-solid fa-forward"></i></span>
+      }@else {Show Less Cars
+      <span class="arrow"><i class="fa-solid fa-backward"></i></span> }
+    </button>
+  </div>
+</div>

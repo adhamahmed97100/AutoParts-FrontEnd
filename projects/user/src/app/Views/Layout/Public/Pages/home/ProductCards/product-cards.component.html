@@ -1,0 +1,107 @@
+<div class="py-3 py-md-5 bg-light" id="products-container">
+  <div class="container">
+    @if(Products.length>0){
+    <div class="row">
+      <div class="col-md-12">
+        <h4 class="mb-4">Our Products</h4>
+      </div>
+      @for (Product of Products| paginate: { id: 'foo', itemsPerPage:pageSize,
+      currentPage: p, totalItems: total } ; track Product.productID) {
+      <div class="col-md-3 col-sm-6 mb-4">
+        <div class="card product-card shadow-sm h-100 d-flex flex-column">
+          <div
+            class="position-relative overflow-hidden"
+            (click)="GetProductDetails(Product.productID)"
+          >
+            <span class="badge bg-danger badge-floating">Sale!</span>
+            <img
+              *ngIf="getMainImage(Product.images) as mainImg"
+              [lazyLoad]="Ip + '/images/' + mainImg"
+              [defaultImage]="'Loding.svg'"
+              class="product-image card-img-top mt-2"
+              alt="Product Image"
+            />
+          </div>
+
+          <div class="card-body d-flex flex-column">
+            <div class="d-flex justify-content-between align-items-center mb-2">
+              <h5 class="card-title mb-0">
+                {{ Product.name.slice(0, 100) }}...
+              </h5>
+            </div>
+            <p class="card-text text-muted"></p>
+
+            <div class="d-grid gap-2 mt-auto">
+              <div>
+                <span class="text-muted text-decoration-line-through"
+                  >EGP {{ (Product.price * (1 + 0.2)).toFixed(2) }}</span
+                >
+                <span class="h4 mb-0 ms-2 text-primary"
+                  >EGP {{ Product.price }}</span
+                >
+
+                <span class="badge bg-success float-end">In Stock</span>
+              </div>
+            </div>
+
+            <div class="d-flex justify-content-between align-items-center mb-3">
+              <div>
+                <span class="text-muted small">Reviews</span>
+              </div>
+              <div class="text-warning">
+                @for (i of [1,2,3,4,5] ; track i) {
+                <i
+                  class="  
+                    {{
+                    i <= fullStars(Product.averageRating)
+                      ? 'fa-solid fa-star'
+                      : fullStars(Product.averageRating) &&
+                        i - 0.5 <= Product.averageRating
+                      ? 'fa-solid fa-star-half-alt'
+                      : 'fa-regular fa-star'
+                  }} "
+                  aria-hidden="true"
+                ></i>
+                }
+              </div>
+            </div>
+
+            <!-- الأزرار مثبتة في الأسفل -->
+            <div class="d-grid gap-2 mt-auto">
+              <button
+                class="btn btn-cart"
+                (click)="AddToCart(Product.productID)"
+              >
+                <i class="fas fa-shopping-cart me-2"></i>Add to Cart
+              </button>
+              <button class="btn btn-outline-secondary">
+                <i class="fas fa-heart me-2"></i>Add to Wishlist
+              </button>
+            </div>
+          </div>
+          <div class="card-footer bg-white">
+            <div class="d-flex justify-content-between text-muted small">
+              <span><i class="fas fa-truck me-2"></i>Free Shipping</span>
+              <span><i class="fas fa-undo me-2"></i>30 Days Return</span>
+            </div>
+          </div>
+        </div>
+      </div>
+      }
+    </div>
+    <pagination-controls
+      id="foo"
+      (pageChange)="pageChanged($event)"
+      (pageBoundsCorrection)="pageChanged($event)"
+      previousLabel="Previous"
+      nextLabel="Next"
+      screenReaderPaginationLabel="Pagination"
+      screenReaderPageLabel="page"
+      screenReaderCurrentLabel="You're on page"
+    >
+    </pagination-controls>
+    }@else {
+    <app-not-found></app-not-found>
+    }
+  </div>
+</div>

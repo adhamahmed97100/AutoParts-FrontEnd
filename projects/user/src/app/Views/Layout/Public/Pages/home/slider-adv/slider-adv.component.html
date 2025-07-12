@@ -1,0 +1,147 @@
+<!-- slider-car-service.component.html -->
+
+<div class="car-service-container">
+  <!-- Left side: Promotion Banner Slider -->
+  <div class="banner-container">
+    <swiper-container
+      loop="true"
+      navigation="true"
+      speed="1200"
+      pagination="true"
+      autoplay-delay="3000"
+      autoplay-disable-on-interaction="false"
+    >
+      <swiper-slide *ngFor="let img of imagePaths">
+        <div class="image-wrapper">
+          <img
+            [src]="img"
+            class="custom-slide-img"
+            alt="إعلان صيانة السيارات"
+            loading="lazy"
+          />
+        </div>
+      </swiper-slide>
+    </swiper-container>
+  </div>
+
+  <!-- Right side: Service Selection Panel -->
+  <div class="service-panel">
+    <!-- Tabs for service types -->
+    <div class="service-tabs">
+      <div class="tab active">
+        <div class="tab-icon">🔍</div>
+        <div class="tab-text">Book a Service Center</div>
+        <div class="tab-description">
+          Certified service centers for your car
+        </div>
+      </div>
+      <div class="tab">
+        <div class="tab-icon">🔧</div>
+        <div class="tab-text">Buy Spare Parts</div>
+        <div class="tab-description">
+          Find spare parts and products for your car
+        </div>
+      </div>
+    </div>
+    <div class="car-selection">
+      <!-- Select Brand -->
+      <div class="selection-item">
+        <ng-select
+          [items]="CarBrands"
+          bindLabel="name"
+          bindValue="id"
+          placeholder="Select Brand"
+          [(ngModel)]="selectedBrand"
+          [searchable]="true"
+          [clearable]="true"
+          [virtualScroll]="true"
+          [selectOnTab]="true"
+          (change)="GetModelsWithBrands($event)"
+        >
+          <ng-template ng-option-tmp let-item="item">
+            <img
+              [lazyLoad]="Ip + '/images/CarBrand/' + item.image"
+              [defaultImage]="'Loding.svg'"
+              class="brand-logo"
+              style="width: 30px; height: 30px; margin: 20px 10px"
+            />
+            {{ item.name }}
+          </ng-template>
+        </ng-select>
+      </div>
+
+      <!-- Select Model -->
+      <div class="selection-item">
+        <ng-select
+          [items]="Models"
+          bindLabel="displayName"
+          bindValue="id"
+          placeholder="Select Model"
+          [placeholder]="'Select Model'"
+          [(ngModel)]="selectedModel"
+          [disabled]="!selectedBrand"
+          [searchable]="true"
+          [clearable]="true"
+          [virtualScroll]="true"
+          [selectOnTab]="true"
+        >
+          <ng-template ng-option-tmp let-item="item">
+            <img
+              [lazyLoad]="Ip + '/images/Models/' + item.image"
+              [defaultImage]="'Loding.svg'"
+              class="brand-logo"
+              style="width: auto; height: 40px; margin: 20px 10px"
+            />
+            {{ item.displayName }}
+          </ng-template>
+        </ng-select>
+      </div>
+
+      <!-- Select Category -->
+      <div class="selection-item">
+        <ng-select
+          [items]="Categorys"
+          bindLabel="name"
+          bindValue="id"
+          groupBy="subCategories"
+          [searchable]="true"
+          [selectOnTab]="true"
+          placeholder="Select Category"
+          (change)="SelectCategory($event)"
+        >
+          <ng-template ng-optgroup-tmp let-item="item">
+            <hr />
+            <img
+              [lazyLoad]="Ip + '/images/Category/' + item.image"
+              [defaultImage]="'Loding.svg'"
+              class="brand-logo"
+              style="width: auto; height: 120px; margin: 0 20px"
+            />
+
+            {{ item.name }}
+            <hr />
+          </ng-template>
+
+          <ng-template ng-option-tmp let-item="item">
+            <img
+              [lazyLoad]="Ip + '/images/Category/' + item.image"
+              [defaultImage]="'Loding.svg'"
+              class="subcat-logo"
+              style="width: 40px; height: 40px; margin-right: 8px"
+            />
+            {{ item.name }}
+          </ng-template>
+        </ng-select>
+      </div>
+    </div>
+
+    <!-- Action button -->
+    <button
+      (click)="Search()"
+      class="action-btn"
+      [disabled]="!selectedModel || !selectedBrand || !selectedCategory"
+    >
+      Buy Spare Parts
+    </button>
+  </div>
+</div>

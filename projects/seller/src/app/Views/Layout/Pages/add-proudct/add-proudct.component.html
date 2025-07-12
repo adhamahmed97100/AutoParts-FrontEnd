@@ -1,0 +1,422 @@
+<!-- product-form.component.html -->
+<div class="product-form-container">
+  <div class="header">
+    <h1>Add a new Product</h1>
+    <p>Online product across your store</p>
+    <div class="actions">
+      <button class="btn-secondary" (click)="saveDraft()">Save draft</button>
+      <button type="submit" (click)="publishProduct()" class="btn-primary">
+        Publish product
+      </button>
+    </div>
+  </div>
+
+  <form [formGroup]="productForm">
+    <div class="form-layout">
+      <!-- Left column -->
+      <div class="main-column">
+        <!-- Product Information Section -->
+        <div class="card">
+          <h2>Product information</h2>
+
+          <div class="form-group">
+            <label for="name">Name *</label>
+            <textarea
+              type="text"
+              id="name"
+              formControlName="name"
+              placeholder="Product title"
+            >
+            </textarea>
+          </div>
+
+          <div class="form-group">
+            <label for="description">Description *</label>
+            <div class="text-editor-toolbar"></div>
+            <quill-editor
+              id="description"
+              class="w-100"
+              style="height: 200px"
+              formControlName="description"
+              placeholder="Product Description"
+              [modules]="editorConfig"
+            ></quill-editor>
+          </div>
+
+          <div class="form-group">
+            <div class="row">
+              <div class="col">
+                <label for="product-sku">SKU *</label>
+                <div class="custom-search-container">
+                  <input
+                    type="text"
+                    id="product-sku"
+                    class="form-control"
+                    [formControl]="searchControl"
+                    placeholder="Search for SKU"
+                    autocomplete="off"
+                    (focus)="onFocus()"
+                    (blur)="onBlur()"
+                    required
+                  />
+
+                  <div class="search-results-dropdown" *ngIf="showDropdown">
+                    <div class="loading-indicator" *ngIf="items.length === 0">
+                      <span>جاري البحث...</span>
+                    </div>
+                    <ul class="search-results-list" *ngIf="items.length > 0">
+                      <li
+                        *ngFor="let item of items"
+                        (mousedown)="selectItem(item)"
+                      >
+                        <span class="sku-label">SKU:</span> {{ item.sku }}
+                      </li>
+                    </ul>
+                  </div>
+
+                  <div class="selected-indicator" *ngIf="skuSelected">
+                    <i class="fa fa-check-circle"></i>
+                  </div>
+                </div>
+              </div>
+
+              <div class="col">
+                <label for="product-sku"></label>
+                <button
+                  class="btn btn-primary w-100"
+                  style="margin-top: 20px"
+                  (click)="AddNewModelCampatibility()"
+                >
+                  Add New Model
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="card visible">
+          <h2>Vehicle Compatibility</h2>
+          <div class="row">
+            <div class="col">
+              <div class="selection-item">
+                <ng-select
+                  [items]="CarBrands"
+                  bindLabel="name"
+                  placeholder="Select Brand"
+                  [searchable]="true"
+                  [(ngModel)]="selectedBrand"
+                  [ngModelOptions]="{ standalone: true }"
+                  [clearable]="true"
+                  [virtualScroll]="true"
+                  [selectOnTab]="true"
+                  (change)="GetModelsWithBrands($event)"
+                >
+                  <ng-template ng-option-tmp let-item="item">
+                    {{ item.name }}
+                  </ng-template>
+                </ng-select>
+              </div>
+            </div>
+            <div class="col">
+              <div class="selection-item">
+                <ng-select
+                  [items]="Models"
+                  bindLabel="displayName"
+                  placeholder="Select Model 2"
+                  [searchable]="true"
+                  [clearable]="true"
+                  [(ngModel)]="selectedModel"
+                  [ngModelOptions]="{ standalone: true }"
+                  [disabled]="!selectedBrand"
+                  [virtualScroll]="true"
+                  [selectOnTab]="true"
+                  (change)="GetMaxAndMinYearsWithBrands($event)"
+                >
+                  <ng-template ng-option-tmp let-item="item">
+                    {{ item.displayName }}
+                  </ng-template>
+                </ng-select>
+              </div>
+            </div>
+          </div>
+          <div class="row mt-5">
+            <div class="col">
+              <div class="selection-item">
+                <ng-select
+                  [items]="RangeYear"
+                  placeholder="Min Year"
+                  [(ngModel)]="selectMinYear"
+                  [ngModelOptions]="{ standalone: true }"
+                  [disabled]="RangeYear.length == 0"
+                  [searchable]="true"
+                  [clearable]="true"
+                  [virtualScroll]="true"
+                  [selectOnTab]="true"
+                >
+                </ng-select>
+              </div>
+            </div>
+            <div class="col">
+              <div class="selection-item">
+                <ng-select
+                  [items]="RangeYear"
+                  placeholder="Max Year"
+                  [placeholder]="'Max Year'"
+                  [ngModelOptions]="{ standalone: true }"
+                  [(ngModel)]="selectMaxYear"
+                  [disabled]="RangeYear.length == 0"
+                  [searchable]="true"
+                  [clearable]="true"
+                  [virtualScroll]="true"
+                  [selectOnTab]="true"
+                >
+                </ng-select>
+              </div>
+            </div>
+          </div>
+          <div class="mt-5">
+            <button
+              class="btn btn-primary W-100"
+              style="display: flex; justify-content: center; margin: auto"
+              (click)="click()"
+            >
+              Add Compatibility
+            </button>
+          </div>
+          <h2 class="section-title">Technical Specifications</h2>
+          <div class="specifications-container">
+            @for (Model of ModelCampatibilityView; track Model.ModelName) {
+            <div class="spec-row">
+              <input
+                type="text"
+                class="form-control"
+                disabled
+                value="{{ Model.BrandName }} - {{ Model.ModelName }}"
+              />
+              <input
+                type="text"
+                class="form-control"
+                disabled
+                value="{{ Model.MinYear }} - {{ Model.MaxYear }}"
+              />
+              <div class="spec-row-actions">
+                <button (click)="remove(Model)" type="button" title="Remove">
+                  ❌
+                </button>
+              </div>
+            </div>
+            }
+          </div>
+        </div>
+
+        <div class="card">
+          <h2>Product Images Main</h2>
+          <div class="image-upload-area">
+            <div
+              class="dropzone"
+              (dragover)="onDragOverMain($event)"
+              (dragleave)="onDragLeaveMain($event)"
+              (drop)="onDropMain($event)"
+              (click)="browseImageMain()"
+              [class]="{ 'drag-over': isDragOver }"
+            >
+              @if(MainImagePreviews.image!=""){
+              <div class="image-preview-Main">
+                <div class="preview-item">
+                  <img [src]="MainImagePreviews.image" alt="Uploaded Image" />
+                  <button
+                    type="button"
+                    class="delete-btn"
+                    (click)="removeMain()"
+                  >
+                    X
+                  </button>
+                </div>
+              </div>
+              } @else {
+
+              <div class="upload-icon">
+                <i class="fa fa-cloud-upload"></i>
+              </div>
+              <p>Drag and drop your images here</p>
+              <button type="button" class="btn-browse">Browse images</button>
+              }
+            </div>
+
+            <input
+              type="file"
+              #fileInput
+              (change)="onFileSelectMain($event)"
+              accept="image/*"
+              multiple
+              hidden
+            />
+          </div>
+        </div>
+
+        <div class="card">
+          <h2>Product Images</h2>
+          <div class="image-upload-area">
+            <!-- منطقة السحب والإفلات -->
+            <div
+              class="dropzone"
+              (dragover)="onDragOver($event)"
+              (dragleave)="onDragLeave($event)"
+              (drop)="onDrop($event)"
+              (click)="browseImage()"
+              [class]="{ 'drag-over': isDragOver }"
+            >
+              @if(imagePreviews.length > 0){
+              <div class="image-preview">
+                @for(img of imagePreviews; track img){
+                <div class="preview-item">
+                  <img [src]="img" alt="Uploaded Image" />
+                  <button
+                    type="button"
+                    class="delete-btn"
+                    (click)="removeImage(img, imagePreviews.indexOf(img))"
+                  >
+                    X
+                  </button>
+                </div>
+                }
+              </div>
+              } @else {
+
+              <div class="upload-icon">
+                <i class="fa fa-cloud-upload"></i>
+              </div>
+              <p>Drag and drop your images here</p>
+              <button type="button" class="btn-browse">Browse images</button>
+              }
+            </div>
+
+            <!-- زر رفع الصور عبر المتصفح -->
+            <input
+              type="file"
+              #fileInput
+              (change)="onFileSelect($event)"
+              accept="image/*"
+              multiple
+              hidden
+            />
+
+            <!-- رفع صورة من خلال رابط -->
+            <div class="url-link">
+              <button
+                type="button"
+                class="link-btn"
+                (click)="addMediaFromUrl()"
+              >
+                Add media from URL
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Right column -->
+      <div class="side-column">
+        <!-- Pricing Section -->
+        <div class="card">
+          <h2>Pricing</h2>
+
+          <div class="form-group">
+            <label for="basePrice">Base Price</label>
+            <input
+              type="text"
+              id="basePrice"
+              formControlName="basePrice"
+              placeholder="Price"
+            />
+          </div>
+
+          <div class="form-group">
+            <label for="discountedPrice">Discounted Price</label>
+            <input
+              type="text"
+              id="discountedPrice"
+              formControlName="discountedPrice"
+              placeholder="Discounted Price"
+            />
+          </div>
+
+          <div class="form-toggle">
+            <label>In stock</label>
+            <div class="toggle-switch">
+              <input type="checkbox" id="inStock" formControlName="inStock" />
+              <label for="inStock" class="toggle-label"></label>
+            </div>
+          </div>
+        </div>
+
+        <!-- Organize Section -->
+
+        <div class="card">
+          <h2>Organize</h2>
+          <div class="form-group">
+            <!-- Right side: Service Selection Panel -->
+            <div class="service-panel">
+              <!-- Tabs for service types -->
+
+              <div class="car-selection">
+                <!-- Select Brand -->
+
+                <!-- Select Model -->
+
+                <!-- Select Category -->
+                <div class="selection-item">
+                  <ng-select
+                    [items]="Categorys"
+                    bindLabel="name"
+                    bindValue="id"
+                    groupBy="subCategories"
+                    [searchable]="true"
+                    [selectOnTab]="true"
+                    placeholder="Select Category"
+                    (change)="SelectCategory($event)"
+                  >
+                    <ng-template ng-optgroup-tmp let-item="item">
+                      <hr />
+
+                      {{ item.name }}
+                      <hr />
+                    </ng-template>
+
+                    <ng-template ng-option-tmp let-item="item">
+                      {{ item.name }}
+                    </ng-template>
+                  </ng-select>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="collection">Stock</label>
+            <input
+              type="number"
+              formControlName="Stock"
+              placeholder="Stock"
+              class="form-control"
+            />
+          </div>
+
+          <!-- <div class="form-group">
+            <label for="tags">Tags</label>
+            <div class="tags-input">
+              <div class="tag">Normal <span class="remove">×</span></div>
+              <div class="tag">Standard <span class="remove">×</span></div>
+              <div class="tag">Premium <span class="remove">×</span></div>
+              <input
+                type="text"
+                id="tags"
+                formControlName="tags"
+                placeholder="Add tag"
+              />
+            </div>
+          </div> -->
+        </div>
+      </div>
+    </div>
+  </form>
+</div>

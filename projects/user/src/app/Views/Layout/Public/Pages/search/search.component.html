@@ -1,0 +1,111 @@
+<div class="search-container">
+  <div class="search-content">
+    <aside class="search-sidebar">
+      <div class="sidebar-header">
+        <h3>Categories</h3>
+      </div>
+      <div class="sidebar-content">
+        <div class="filter-section">
+          <h3>Categories</h3>
+          <ul class="filter-list">
+            <li>
+              <input type="checkbox" id="cat1" />
+              <label for="cat1">Brake Caliper</label>
+            </li>
+            <li>
+              <input type="checkbox" id="cat2" />
+              <label for="cat2">Radiator</label>
+            </li>
+            <li>
+              <input type="checkbox" id="cat3" />
+              <label for="cat3">Engine oil</label>
+            </li>
+            <li>
+              <input type="checkbox" id="cat4" />
+              <label for="cat4">Exhaust Tips</label>
+            </li>
+            <li>
+              <input type="checkbox" id="cat5" />
+              <label for="cat5">Performance air filter</label>
+            </li>
+          </ul>
+        </div>
+
+        <div class="filter-section">
+          <h3>Price</h3>
+          <div class="price-range">
+            <input
+              type="range"
+              min="0"
+              max="1000"
+              value="500"
+              class="price-slider"
+            />
+            <div class="price-inputs">
+              <input type="number" placeholder="Min" class="min-price" />
+              <span>-</span>
+              <input type="number" placeholder="Max" class="max-price" />
+            </div>
+          </div>
+        </div>
+
+        <div class="filter-section">
+          <h3>Rating</h3>
+          <ul class="filter-list rating-list">
+            <li>
+              <input type="checkbox" id="rate5" />
+              <label for="rate5">⭐⭐⭐⭐⭐</label>
+            </li>
+            <li>
+              <input type="checkbox" id="rate4" />
+              <label for="rate4">⭐⭐⭐⭐</label>
+            </li>
+            <li>
+              <input type="checkbox" id="rate3" />
+              <label for="rate3">⭐⭐⭐</label>
+            </li>
+            <li>
+              <input type="checkbox" id="rate2" />
+              <label for="rate2">⭐⭐</label>
+            </li>
+            <li>
+              <input type="checkbox" id="rate1" /> <label for="rate1">⭐</label>
+            </li>
+          </ul>
+        </div>
+
+        <button class="apply-filters-btn">Apply Filters</button>
+      </div>
+    </aside>
+    <main class="search-main">
+      <header class="search-header">
+        <h2>Search Results</h2>
+      </header>
+      <div class="search-results">
+        <div class="search-controls">
+          <div class="search-bar">
+            <input
+              type="text"
+              placeholder="Search for products..."
+              class="search-input"
+            />
+            <button class="search-btn">Search</button>
+          </div>
+          <div class="filter-controls">
+            <button class="filter-btn">
+              Filter <i class="fa fa-filter"></i>
+            </button>
+            <select class="sort-select">
+              <option value="relevance">Most Relevant</option>
+              <option value="price-asc">Price: Low to High</option>
+              <option value="price-desc">Price: High to Low</option>
+              <option value="newest">Newest</option>
+            </select>
+          </div>
+        </div>
+        <app-product-cards [filter]="filter"></app-product-cards>
+      </div>
+    </main>
+  </div>
+  <app-info></app-info>
+</div>

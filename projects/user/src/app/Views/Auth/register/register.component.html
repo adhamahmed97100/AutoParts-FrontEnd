@@ -1,0 +1,140 @@
+<div class="content">
+  <div class="container">
+    <div class="row align-items-center">
+      <div class="col-lg-5">
+        <img [lazyLoad]="'login.jpeg'" alt="Image" class="img-fluid" />
+
+        <span class="d-block text-center my-4 text-muted">
+          Or register with</span
+        >
+        <div class="social-login text-center">
+          <a href="#" class="facebook btn">
+            <i class="face fa-brands fa-square-facebook"></i>
+          </a>
+          <a href="#" class="twitter btn">
+            <i class="fa-brands fa-twitter"></i>
+          </a>
+          <a href="#" class="google btn">
+            <i class="fa-brands fa-google"></i>
+          </a>
+        </div>
+      </div>
+      <div class="col-lg-1 my-5 text-center">&mdash; or &mdash;</div>
+      <div class="col-lg-5 contents">
+        <div class="form-block">
+          <div class="mb-4 text-center">
+            <a [routerLink]="['/Public/Home']">
+              <img src="Logo/1.svg" alt="Company Logo" class="logo" />
+            </a>
+            <h3 class="header">Register</h3>
+            <p class="mb-4"></p>
+          </div>
+          <form [formGroup]="Form">
+            <mat-form-field appearance="outline" class="w-100">
+              <mat-label>User name</mat-label>
+
+              <input
+                matInput
+                type="name"
+                id="registerName"
+                formControlName="userName"
+                required
+              />
+              <mat-icon matSuffix>supervised_user_circle</mat-icon>
+              @if (Form.get('userName')?.hasError('required')) {
+              <mat-error> Email Is Required </mat-error>
+              } @else if (Form.get('userName')?.hasError('maxlength')) {
+              <mat-error> Email Is maxlength Is 30 Char </mat-error>
+              } @else if (Form.get('userName')?.hasError('minlength')) {
+              <mat-error> Email Is MinLength Is 5 Char </mat-error>
+              }
+            </mat-form-field>
+            <mat-form-field appearance="outline" class="w-100">
+              <mat-label>Email</mat-label>
+
+              <input
+                matInput
+                type="email"
+                id="loginEmail"
+                formControlName="email"
+                required
+              />
+              <mat-icon matSuffix>email</mat-icon>
+
+              @if (Form.get('email')?.hasError('required')) {
+              <mat-error> Email Is Required </mat-error>
+              } @else if (Form.get('email')?.hasError('email')) {
+              <mat-error> Email Is Invalid </mat-error>
+              } @else if (Form.get('email')?.hasError('maxlength')) {
+              <mat-error> Email Is maxlength Is 30 Char </mat-error>
+              } @else if (Form.get('email')?.hasError('minlength')) {
+              <mat-error> Email Is MinLength Is 5 Char </mat-error>
+              }
+            </mat-form-field>
+            <mat-form-field appearance="outline" class="w-100">
+              <mat-label>Password</mat-label>
+
+              <input
+                matInput
+                [type]="hide ? 'password' : 'text'"
+                id="loginPassword"
+                formControlName="password"
+                required
+              />
+
+              <mat-icon
+                matSuffix
+                (click)="togglePasswordVisibility()"
+                style="cursor: pointer"
+              >
+                {{ hide ? "visibility_off" : "visibility" }}
+              </mat-icon>
+            </mat-form-field>
+            <mat-form-field appearance="outline" class="w-100">
+              <mat-label>Confirm Password</mat-label>
+
+              <input
+                matInput
+                [type]="hide ? 'password' : 'text'"
+                id="loginPassword"
+                formControlName="comperPassword"
+                required
+              />
+
+              <mat-icon
+                matSuffix
+                (click)="togglePasswordVisibility()"
+                style="cursor: pointer"
+              >
+                {{ hide ? "visibility_off" : "visibility" }}
+              </mat-icon>
+            </mat-form-field>
+            <!-- Submit button -->
+
+            <div class="d-flex mb-5 align-items-center">
+              <label class="check control--checkbox mb-0">
+                <input type="checkbox" checked="checked" />
+                <span class="caption">Remember me</span>
+                <div class="control__indicator"></div>
+              </label>
+            </div>
+
+            <button
+              mat-raised-button
+              color="primary"
+              class="full-width login-button w-100"
+              type="submit"
+              (click)="Registeration()"
+            >
+              Registration
+            </button>
+          </form>
+          <p class="register-text">
+            Do have account?
+            <a class="register-link" routerLink="/Auth/Login">Login</a>
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

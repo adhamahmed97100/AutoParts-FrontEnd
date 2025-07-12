@@ -1,0 +1,59 @@
+<div class="form-container" [@slideInOut]>
+  <img src="Logo/1.svg" alt="Company Logo" class="logo mb-4" />
+
+  <form [formGroup]="countryForm" (ngSubmit)="onSubmit()">
+    <div class="form-field">
+      <label>Select your country <span class="required">*</span></label>
+      <div class="dropdown">
+        <select formControlName="country">
+          <option value="egypt">Egypt</option>
+          <option value="nigeria">Nigeria</option>
+          <option value="kenya">Kenya</option>
+          <option value="morocco">Morocco</option>
+          <option value="ivory_coast">Ivory Coast</option>
+          <option value="ghana">Ghana</option>
+          <option value="algeria">Algeria</option>
+          <option value="tunisia">Tunisia</option>
+          <option value="senegal">Senegal</option>
+        </select>
+        <span class="dropdown-arrow">▼</span>
+      </div>
+      @if(countryForm.get('country')?.invalid &&
+      countryForm.get('country')?.touched){
+      <span class="error-message"> Country is required </span>
+      }
+    </div>
+
+    <button
+      type="submit"
+      class="submit-button"
+      [disabled]="countryForm.invalid"
+    >
+      NEXT
+    </button>
+
+    <p class="note">
+      Only for sellers registered & selling in their own country
+    </p>
+
+    <div class="divider">
+      <span>OR</span>
+    </div>
+
+    <button type="button" class="global-button" (click)="sellGlobally()">
+      <span class="icon">✈️</span>
+      Sell Globally on E-Comerce
+    </button>
+
+    <p class="global-note">
+      Register as a E-Comerce Global seller and sell your products across
+      Africa.<br />
+      Know more about E-Comerce Global at -
+      <a href="https://www.jumia-global.com/">https://www.jumia-global.com/</a>
+    </p>
+
+    <div class="login-link">
+      Already have an account? <a routerLink="../login">Sign in</a>
+    </div>
+  </form>
+</div>

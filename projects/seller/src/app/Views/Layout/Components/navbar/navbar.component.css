@@ -1,0 +1,365 @@
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 15px;
+  font-family: Arial, sans-serif;
+}
+
+.title {
+  color: #2e5381;
+  font-size: 20px;
+  margin-bottom: 1px;
+}
+.image-container img {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: auto;
+  width: 50%;
+  height: 50%;
+}
+.notification-bell {
+  position: relative;
+  color: #333;
+  font-size: 1.2rem;
+  transition: all 0.3s ease;
+}
+
+.notification-bell:hover {
+  color: #213a59;
+  transform: scale(1.1);
+}
+
+.notification-badge {
+  position: absolute;
+  top: -5px;
+  right: -5px;
+  background-color: red;
+  color: white;
+  border-radius: 50%;
+  padding: 2px 6px;
+  font-size: 0.7rem;
+  font-weight: bold;
+  box-shadow: 0 2px 5px rgba(255, 68, 68, 0.3);
+}
+
+.dropdown-menu {
+  padding: 0;
+  margin-top: 10px;
+  border: none;
+  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.15);
+}
+
+.notification-container {
+  padding: 0 !important;
+  margin-top: 0px !important;
+  border: none !important;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1) !important;
+  min-width: 350px !important;
+}
+
+.notification-header {
+  padding: 15px 20px;
+  border-bottom: 1px solid #eee;
+  background-color: #f8f9fa;
+
+  border-radius: 20px 20px 0 0;
+}
+
+.notification-header span {
+  font-size: 16px;
+  font-weight: 600;
+}
+
+.notification-count {
+  background-color: #213a59;
+  color: white;
+  padding: 2px 8px;
+  border-radius: 12px;
+  font-size: 0.8rem;
+  font-weight: 500;
+}
+
+.notification-messages {
+  max-height: 350px;
+  overflow-y: auto;
+  overflow-x: hidden;
+  padding: 10px 0;
+  background: white;
+}
+
+.notification-item {
+  padding: 15px 20px;
+  border-bottom: 1px solid #f0f0f0;
+  transition: all 0.3s ease;
+  cursor: pointer;
+  display: flex;
+  position: relative;
+  overflow: hidden;
+}
+
+.notification-item::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 4px;
+  background: #213a59;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.notification-item:hover {
+  background: linear-gradient(to right, rgba(33, 58, 89, 0.05), transparent);
+}
+
+.notification-item:hover::before {
+  opacity: 1;
+}
+
+.notification-text {
+  margin-bottom: 5px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.notification-text i {
+  font-size: 18px;
+  color: #213a59;
+  background: rgba(33, 58, 89, 0.1);
+  padding: 8px;
+  border-radius: 50%;
+  transition: all 0.3s ease;
+}
+
+.notification-text i.fa-triangle-exclamation {
+  color: #dc3545;
+  background: rgba(220, 53, 69, 0.1);
+}
+
+.notification-item:hover .notification-text i {
+  transform: scale(1.1);
+}
+
+.notification-text span {
+  font-size: 14px;
+  margin-bottom: 0;
+  flex: 1;
+  line-height: 1.4;
+}
+
+.notification-text small {
+  font-size: 12px;
+  color: #6c757d;
+  display: block;
+  margin-top: 4px;
+  line-height: 1.4;
+}
+
+.notification-meta {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 8px;
+}
+
+.notification-time {
+  font-size: 11px;
+  color: #adb5bd;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.notification-time::before {
+  content: "\f017";
+  font-family: "Font Awesome 6 Free";
+  font-weight: 900;
+  font-size: 10px;
+}
+
+.text-warning {
+  color: #dc3545 !important;
+}
+
+.text-alert {
+  color: #ffbf00 !important;
+}
+
+.unread-dot {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  width: 8px;
+  height: 8px;
+  background: #dc3545;
+  border-radius: 50%;
+  border: 2px solid white;
+  box-shadow: 0 0 0 2px rgba(220, 53, 69, 0.2);
+}
+
+.notification-footer {
+  padding: 15px 20px;
+  text-align: center;
+  color: #213a59;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  border-top: 1px solid #eee;
+  background-color: white;
+  border-radius: 0 0 20px 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+}
+
+.notification-footer:hover {
+  color: #0d6efd;
+}
+
+.notification-footer i {
+  font-size: 14px;
+  transition: transform 0.3s ease;
+}
+
+.notification-footer:hover i {
+  transform: translateX(3px);
+}
+
+/* Custom scrollbar */
+.notification-messages::-webkit-scrollbar {
+  width: 6px;
+}
+
+.notification-messages::-webkit-scrollbar-track {
+  background: #f1f1f1;
+  border-radius: 10px;
+}
+
+.notification-messages::-webkit-scrollbar-thumb {
+  background: #c1c1c1;
+  border-radius: 10px;
+}
+
+.notification-messages::-webkit-scrollbar-thumb:hover {
+  background: #a8a8a8;
+}
+
+.box-container {
+  padding: 30px 20px;
+  text-align: center;
+}
+
+.image-container {
+  margin-bottom: 20px;
+}
+
+.image-container img {
+  width: 100px;
+  height: 100px;
+  opacity: 0.7;
+  transition: all 0.3s ease;
+}
+
+.image-container img:hover {
+  opacity: 0.9;
+  transform: scale(1.05);
+}
+
+.title {
+  color: #666;
+  font-size: 1.1rem;
+  font-weight: 500;
+  margin-top: 15px;
+}
+
+.main-navbar {
+  border-bottom: 1px solid #ccc;
+
+  z-index: 1000; /* أقل من z-index بتاع Angular Material dialog */
+}
+.main-navbar .top-navbar {
+  background: #fff;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  color: #002a47;
+}
+.main-navbar .top-navbar .brand-name {
+  color: #002a47;
+}
+.main-navbar .top-navbar .nav-link {
+  color: #002a47;
+  font-size: 16px;
+  font-weight: 500;
+}
+.profile-pic {
+  width: 40px;
+  cursor: pointer;
+  height: 40px;
+  border: 2px solid #fff;
+  background-color: #fff;
+}
+
+.main-navbar .top-navbar .dropdown-menu {
+  padding: 0px 0px;
+  border-radius: 0px;
+}
+.main-navbar .top-navbar .dropdown-menu .dropdown-item {
+  padding: 8px 16px;
+  border-bottom: 1px solid #ccc;
+  font-size: 14px;
+}
+.main-navbar .top-navbar .dropdown-menu .dropdown-item i {
+  width: 20px;
+  text-align: center;
+  color: #2874f0;
+  font-size: 14px;
+}
+.main-navbar .navbar {
+  padding: 0px;
+  background-color: #ddd;
+}
+.main-navbar .navbar .nav-item .nav-link {
+  padding: 8px 20px;
+  color: #000;
+  font-size: 15px;
+}
+
+@media only screen and (max-width: 600px) {
+  .main-navbar .top-navbar .nav-link {
+    font-size: 12px;
+    padding: 8px 10px;
+  }
+}
+.text-confirm {
+  color: #28a745 !important;
+}
+
+.text-shipped {
+  color: #17a2b8 !important;
+}
+
+.text-delivered {
+  color: #213a59 !important;
+}
+
+.text-cancelled {
+  color: #dc3545 !important;
+}
+
+.text-alert {
+  color: #f44336;
+}
+
+.notification-item {
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.notification-item:hover {
+  background-color: rgba(0, 0, 0, 0.05);
+}

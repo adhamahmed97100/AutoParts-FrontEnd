@@ -1,0 +1,83 @@
+<div id="popupOverlay" class="overlay-container mt-5">
+  <div class="popup-box">
+    <h2 mat-dialog-title>Select Location</h2>
+    <mat-dialog-content>
+      @if(savedLocations.length > 0) {
+      <!-- Saved Addresses List -->
+      <h3>Saved Addresses: 📍</h3>
+      <mat-form-field appearance="outline" class="w-100">
+        <mat-label>Select a Saved Address</mat-label>
+        <mat-select (selectionChange)="selectAddress($event)">
+          @for (location of savedLocations; track location.addressID) {
+          <mat-option [value]="location.addressID">
+            <strong
+              >{{ location.street }}, {{ location.suburb }} ,{{
+                location.city
+              }},{{ location.country }}
+            </strong>
+          </mat-option>
+
+          }
+        </mat-select>
+      </mat-form-field>
+      }@else {
+      <!-- Message if No Saved Addresses -->
+      <ng-template #noLocations>
+        <p>No saved addresses available. ❌</p>
+      </ng-template>
+      }
+      <hr />
+      <!-- Map for Selecting a New Address -->
+      <h3>🗺️ Choose a New Location:</h3>
+      <div class="search-container">
+        <mat-form-field appearance="outline" class="search-field">
+          <mat-label>🔍 Search Address</mat-label>
+          <input
+            matInput
+            [(ngModel)]="searchQuery"
+            (input)="onSearchInput($event)"
+          />
+          @if(isSearching) {
+          <div class="search-loading">
+            <mat-spinner diameter="20"></mat-spinner>
+          </div>
+          }
+          <button
+            mat-icon-button
+            matSuffix
+            (click)="searchAddress()"
+            [disabled]="isSearching"
+          >
+            <mat-icon>search</mat-icon>
+          </button>
+        </mat-form-field>
+        @if(showSuggestions && addressSuggestions.length > 0) {
+        <div class="suggestions-container">
+          @for(suggestion of addressSuggestions; track suggestion.display_name)
+          {
+          <div class="suggestion-item" (click)="selectSuggestion(suggestion)">
+            {{ suggestion.display_name }}
+          </div>
+          }
+        </div>
+        }
+      </div>
+      <div id="map" style="height: 300px; border-radius: 8px"></div>
+      <mat-dialog-actions class="mt-3">
+        <button mat-button mat-dialog-close>Close</button>
+        <button mat-button color="primary" (click)="addNewAddress()">
+          Add New Address ➕
+        </button>
+        <button
+          mat-raised-button
+          class="ms-auto"
+          cdkFocusInitial
+          (click)="desapol ? SubmitAddress() : null"
+          [disabled]="!desapol"
+        >
+          ✅ Submit
+        </button>
+      </mat-dialog-actions>
+    </mat-dialog-content>
+  </div>
+</div>

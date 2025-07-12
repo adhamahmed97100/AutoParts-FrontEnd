@@ -1,0 +1,158 @@
+<div class="bg-light">
+  <div class="container py-5">
+    <div class="row">
+      <!-- Profile Header -->
+      <div class="col-12 mb-4">
+        <!--Edit cover-->
+        <div class="text-center">
+          <div class="position-relative d-inline-block">
+            @if(this.userData) { @if(this.userData.picture){
+            <img
+              [defaultImage]="'Loding.svg'"
+              [lazyLoad]="this.userData.picture"
+              class="rounded-circle profile-pic"
+              alt="Profile Picture"
+            />
+            }@else {
+            <img
+              loading="lazy"
+              [defaultImage]="'Loding.svg'"
+              [lazyLoad]="'307ce493-b254-4b2d-8ba4-d12c080d6651.jpg'"
+              class="rounded-circle profile-pic"
+              alt="Profile Picture"
+            />
+            } }
+          </div>
+          <h3 class="mt-3 mb-1">{{ userData.name || "غير محدد" }}</h3>
+
+          <div class="d-flex justify-content-center gap-2 mb-4">
+            <div class="d-flex justify-content-center gap-3">
+              <a
+                class="btn btn-outline-primary btn-sm"
+                [routerLink]="['/Security/editprofile']"
+                >✏ Edit Profile</a
+              >
+
+              <a
+                class="btn btn-outline-secondary btn-sm"
+                [routerLink]="['/Security/changepassword']"
+                >🔐 Change Password</a
+              >
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Main Content -->
+      <div class="col-12">
+        <div class="card border-0 shadow-sm">
+          <div class="card-body p-0">
+            <div class="row g-0">
+              <!-- Sidebar -->
+              <div class="col-lg-3 border-end">
+                <div class="p-4">
+                  <div class="nav flex-column nav-pills">
+                    <a class="nav-link active" href="#"
+                      ><i class="fas fa-user me-2"></i>Personal Info</a
+                    >
+                    <a class="nav-link" href="#"
+                      ><i class="fas fa-lock me-2"></i>Security</a
+                    >
+                    <a class="nav-link" href="#"
+                      ><i class="fas fa-bell me-2"></i>Notifications</a
+                    >
+                    <a class="nav-link" href="#"
+                      ><i class="fas fa-credit-card me-2"></i>Billing</a
+                    >
+                    <a class="nav-link" href="#"
+                      ><i class="fas fa-chart-line me-2"></i>Activity</a
+                    >
+                  </div>
+                </div>
+              </div>
+
+              <!-- Content Area -->
+              <div class="col-lg-9">
+                <div class="p-4">
+                  <!-- Personal Information -->
+                  <div class="mb-4">
+                    <h5 class="mb-4">Personal Information</h5>
+                    <div class="row g-3">
+                      <div class="col-md-6">
+                        <p><strong>Name:</strong></p>
+
+                        <input
+                          type="text"
+                          class="form-control"
+                          value="{{ userData.name || 'غير محدد' }}"
+                        />
+                      </div>
+
+                      <div class="col-md-6">
+                        <p><strong>Email:</strong></p>
+
+                        <input
+                          type="email"
+                          class="form-control"
+                          value="{{ userData.email || 'غير محدد' }}"
+                        />
+                      </div>
+
+                      <div class="col-md-6">
+                        <p><strong>Phone:</strong></p>
+
+                        <input
+                          type="Phone"
+                          class="form-control"
+                          value="{{
+                            userData.phoneNumberDtos.length == 0
+                              ? 'undefined'
+                              : userData.phoneNumberDtos[0].phoneNumber
+                          }}"
+                        />
+                      </div>
+
+                      <div class="col-md-6">
+                        <p><strong>Address:</strong></p>
+
+                        <input
+                          type="Address"
+                          class="form-control"
+                          value="{{
+                            userData.shippingAddresses.length == 0
+                              ? 'undefined'
+                              : userData.shippingAddresses[0].state
+                          }}"
+                        />
+                      </div>
+
+                      <div class="col-12">
+                        <label class="form-label">Bio</label>
+                        <textarea class="form-control" rows="4">
+ ....... </textarea
+                        >
+                      </div>
+                    </div>
+                  </div>
+                  <!-- Recent Activity -->
+                  <div>
+                    <h5 class="mb-4">Recent Activity</h5>
+
+                    <div class="activity-item mb-3">
+                      <h6 class="mb-1">Changed password</h6>
+                      <p class="text-muted small mb-0">Yesterday</p>
+                    </div>
+                    <div class="activity-item">
+                      <h6 class="mb-1">Updated billing information</h6>
+                      <p class="text-muted small mb-0">3 days ago</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

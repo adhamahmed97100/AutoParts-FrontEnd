@@ -1,0 +1,247 @@
+/* account-setup.component.css */
+.form-container {
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 2rem 1rem;
+}
+
+/* Header Section */
+.form-header {
+  margin-bottom: 2rem;
+  text-align: center;
+}
+
+.form-title {
+  font-size: 1.8rem;
+  margin-bottom: 0.5rem;
+  font-size: 24px;
+  font-weight: bold;
+  text-transform: uppercase;
+  background: linear-gradient(135deg, #1e1b2e 0%, #2b5384 100%);
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  text-align: center;
+  letter-spacing: 1px;
+  font-family: "Arial", sans-serif;
+  line-height: 1.3;
+}
+
+.form-subtitle {
+  font-size: 1rem;
+  color: #666;
+  display: flex;
+  margin: auto;
+  justify-content: center;
+  text-align: center;
+  line-height: 1.5;
+  max-width: 80%;
+  margin-bottom: 15px;
+}
+
+/* Phone Input Field */
+.phone-field {
+  margin-bottom: 1.75rem;
+}
+
+.phone-field label {
+  display: block;
+  margin-bottom: 0.5rem;
+  font-weight: 500;
+  color: #444;
+}
+
+.phone-field label .required {
+  color: #e53935;
+  margin-left: 0.2rem;
+}
+
+.phone-field .phone-input {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.phone-field .phone-input .country-code {
+  width: 100px;
+  position: relative;
+}
+
+.phone-field .phone-input .country-code select {
+  width: 100%;
+  padding: 0.8rem 1.8rem 0.8rem 0.8rem;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  font-size: 1rem;
+  appearance: none;
+  background-color: white;
+  cursor: pointer;
+  transition: border-color 0.2s ease;
+}
+
+.phone-field .phone-input .country-code select:focus {
+  outline: none;
+  border-color: #1e1b2e;
+  box-shadow: 0 0 0 2px rgba(30, 27, 46, 0.1);
+}
+
+.phone-field .phone-input .country-code::after {
+  content: "▼";
+  position: absolute;
+  right: 0.8rem;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 0.6rem;
+  color: #666;
+  pointer-events: none;
+}
+
+.phone-field .phone-input input {
+  flex: 1;
+  padding: 0.8rem;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  font-size: 1rem;
+  transition: border-color 0.2s ease;
+}
+
+.phone-field .phone-input input:focus {
+  outline: none;
+  border-color: #1e1b2e;
+  box-shadow: 0 0 0 2px rgba(30, 27, 46, 0.1);
+}
+
+.phone-field .error-message {
+  display: block;
+  color: #e53935;
+  font-size: 0.8rem;
+  margin-top: 0.3rem;
+  min-height: 1em;
+}
+
+/* Password Field */
+.form-field {
+  margin-bottom: 1.75rem;
+}
+
+.form-field label {
+  display: block;
+  margin-bottom: 0.5rem;
+  font-weight: 500;
+  color: #444;
+}
+
+.form-field label .required {
+  color: #e53935;
+  margin-left: 0.2rem;
+}
+
+.form-field .password-input {
+  position: relative;
+}
+
+.form-field .password-input input {
+  width: 100%;
+  padding: 0.8rem 2.5rem 0.8rem 0.8rem;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  font-size: 1rem;
+  transition: border-color 0.2s ease;
+}
+
+.form-field .password-input input:focus {
+  outline: none;
+  border-color: #1e1b2e;
+  box-shadow: 0 0 0 2px rgba(30, 27, 46, 0.1);
+}
+
+.form-field .password-input .toggle-password {
+  position: absolute;
+  right: 0.8rem;
+  top: 50%;
+  transform: translateY(-50%);
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 1.2rem;
+  color: #666;
+  padding: 0.2rem;
+  border-radius: 50%;
+  transition: background-color 0.2s ease;
+}
+
+.form-field .password-input .toggle-password:hover {
+  background-color: #f0f0f0;
+}
+
+.form-field .password-input .toggle-password:focus {
+  outline: none;
+  box-shadow: 0 0 0 2px rgba(30, 27, 46, 0.2);
+}
+
+.form-field .error-message {
+  display: block;
+  color: #e53935;
+  font-size: 0.8rem;
+  margin-top: 0.3rem;
+  min-height: 1em;
+}
+
+.password-hint {
+  font-size: 0.85rem;
+  color: #666;
+  margin: -1rem 0 1.5rem;
+  padding: 0.5rem;
+  background-color: #f8f8f8;
+  border-radius: 4px;
+  line-height: 1.5;
+}
+
+.password-hint ul {
+  margin: 0.5rem 0 0 1rem;
+  padding-left: 0.5rem;
+}
+
+/* Submit Button */
+.submit-button {
+  width: 100%;
+  padding: 1rem;
+  background-color: #1e1b2e;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  margin-top: 0.5rem;
+}
+
+.submit-button:disabled {
+  background-color: #bdbdbd;
+  cursor: not-allowed;
+}
+
+.submit-button:not(:disabled):hover {
+  background: linear-gradient(135deg, #1e1b2e 0%, #2b5384 100%);
+  transform: translateY(-1px);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.submit-button:active {
+  transform: translateY(0);
+}
+
+/* Responsive Adjustments */
+@media (max-width: 480px) {
+  .form-header .form-subtitle {
+    max-width: 100%;
+  }
+
+  .phone-input {
+    flex-direction: column;
+  }
+
+  .phone-input .country-code {
+    width: 100% !important;
+    margin-bottom: 0.5rem;
+  }
+}

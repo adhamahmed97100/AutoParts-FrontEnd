@@ -1,0 +1,285 @@
+body {
+  font-family: "Roboto", sans-serif;
+  background-color: white;
+}
+
+p {
+  color: #b3b3b3;
+  font-weight: 300;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+.h1,
+.h2,
+.h3,
+.h4,
+.h5,
+.h6 {
+  font-family: "Roboto", sans-serif;
+}
+
+a {
+  -webkit-transition: 0.3s all ease;
+  -o-transition: 0.3s all ease;
+  transition: 0.3s all ease;
+}
+.img-fluid {
+  width: 100%;
+  image-rendering: crisp-edges;
+  image-rendering: -webkit-optimize-contrast;
+  filter: contrast(1.1) brightness(1.1);
+  height: auto;
+  margin-bottom: 5px;
+}
+.content .register-link {
+  color: #213a59;
+  text-decoration: underline;
+  position: relative;
+  /* left: 50%; */
+  font-weight: bold;
+  letter-spacing: 0.5px;
+}
+
+.content .register-link:hover {
+  color: #15919b;
+}
+
+.register-text {
+  color: black;
+  font-weight: 400;
+}
+
+.content {
+  padding: 7rem 0;
+}
+
+h2 {
+  font-size: 20px;
+}
+
+.form-block {
+  width: 100%;
+  background: #fff;
+  padding: 30px;
+  -webkit-box-shadow: 1px 3px 3px 3px rgba(0, 0, 0, 0.1);
+  box-shadow: 1px 3px 3px 3px rgba(0, 0, 0, 0.1);
+}
+
+@media (max-width: 991.98px) {
+  .content .bg {
+    height: 500px;
+  }
+}
+
+@media (max-width: 1199.98px) {
+  .content .contents,
+  .content .bg {
+    width: 100%;
+  }
+}
+
+.content .contents .form-group,
+.content .bg .form-group {
+  position: relative;
+  margin-top: 15px;
+}
+
+.content .contents .form-group input,
+.content .bg .form-group input {
+  background: transparent;
+  border-bottom: 1px solid #ccc;
+}
+
+.content .contents .form-control,
+.content .bg .form-control {
+  border: none;
+  padding: 0;
+  font-size: 20px;
+  border-radius: 0;
+}
+
+.content .contents .form-control:active,
+.content .contents .form-control:focus,
+.content .bg .form-control:active,
+.content .bg .form-control:focus {
+  outline: none;
+  -webkit-box-shadow: none;
+  box-shadow: none;
+}
+
+.content .bg {
+  background-size: cover;
+  background-position: center;
+}
+
+.content a {
+  color: #213a59;
+  text-decoration: underline;
+}
+
+.content .btn {
+  height: 54px;
+  padding-left: 30px;
+  padding-right: 30px;
+}
+
+.content .btn-pill {
+  border-radius: 30px;
+}
+
+.social-login a {
+  text-decoration: none;
+  position: relative;
+  text-align: center;
+  color: #fff;
+  margin-bottom: 10px;
+  margin-right: 5px;
+}
+
+.social-login a i {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  -webkit-transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+}
+
+.social-login a:hover {
+  color: #fff;
+}
+
+.social-login a.facebook {
+  background: #3b5998;
+}
+
+.social-login a.facebook:hover {
+  background: #344e86;
+}
+
+.social-login a.twitter {
+  background: #1da1f2;
+}
+
+.social-login a.twitter:hover {
+  background: #0d95e8;
+}
+
+.social-login a.google {
+  background: #ea4335;
+}
+
+.social-login a.google:hover {
+  background: #e82e1e;
+}
+
+.control {
+  display: block;
+  position: relative;
+  padding-left: 30px;
+  margin-bottom: 15px;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+.control .caption {
+  position: relative;
+  top: 0.2rem;
+  color: #888;
+}
+
+.check input {
+  margin-right: 5px;
+  width: 20px;
+  height: 15px;
+  margin-top: 5px;
+}
+
+.register {
+  background-color: #213a59;
+  border: none;
+  width: 100%;
+}
+
+.register:hover {
+  background-color: #15919b;
+}
+
+.sign-in {
+  color: #213a59;
+  text-decoration: none;
+  position: relative;
+  left: 50%;
+  top: 2px;
+}
+
+.sign-in:hover {
+  color: #15919b;
+}
+
+.name {
+  color: #213a59;
+  font-size: 35px;
+  transition: 0.3s;
+  font-weight: bold;
+}
+
+.name:hover {
+  color: #15919b;
+}
+.logo-container {
+  display: flex;
+  align-items: center;
+
+  text-decoration: none;
+  border-radius: 12px;
+  position: relative;
+  overflow: hidden;
+}
+
+.logo-container::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+.header {
+  font-family: "Arial", sans-serif;
+  font-size: 28px;
+  font-weight: 700;
+  color: #1f4c7a;
+
+  position: relative;
+}
+.logo {
+  max-height: 100px;
+  width: auto;
+  position: relative;
+  z-index: 1;
+  margin-bottom: 2px;
+}
+
+@media only screen and (max-width: 768px) {
+  .logo {
+    max-height: 38px;
+  }
+  .logo-container {
+    padding: 6px 10px;
+  }
+}
+
+@media only screen and (max-width: 576px) {
+  .logo {
+    max-height: 32px;
+  }
+  .logo-container {
+    padding: 4px 8px;
+  }
+}

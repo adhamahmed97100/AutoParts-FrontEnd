@@ -1,0 +1,108 @@
+.cart-wrapper {
+  background-color: #f8f9fa;
+  min-height: 100vh;
+  padding: 40px 0;
+}
+.Head {
+  font-size: 28px;
+  font-weight: 700;
+  color: #1f4c7a;
+  margin-bottom: 35px;
+  position: relative;
+}
+
+.product-card {
+  background: white;
+  border-radius: 12px;
+  transition: transform 0.2s;
+}
+
+.product-card:hover {
+  transform: translateY(-2px);
+}
+
+.quantity-input {
+  width: 60px;
+  text-align: center;
+  border: 1px solid #dee2e6;
+  border-radius: 6px;
+}
+
+::ng-deep .transparent-dialog {
+  background-color: transparent !important;
+  box-shadow: none !important;
+  border: none !important;
+}
+
+::ng-deep .transparent-backdrop {
+  background-color: transparent !important;
+}
+
+.product-image {
+  width: 100px;
+  height: 100px;
+  object-fit: cover;
+  border-radius: 8px;
+}
+
+.summary-card {
+  background: white;
+  border-radius: 12px;
+  position: sticky;
+  top: 20px;
+}
+
+.checkout-btn {
+  background: linear-gradient(135deg, #6366f1, #4f46e5);
+  border: none;
+  transition: transform 0.2s;
+}
+
+.checkout-btn:hover {
+  transform: translateY(-2px);
+  background: linear-gradient(135deg, #4f46e5, #4338ca);
+}
+
+.remove-btn {
+  color: #dc2626;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.remove-btn:hover {
+  color: #991b1b;
+}
+
+.quantity-btn {
+  width: 28px;
+  height: 28px;
+  padding: 0;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 6px;
+  background: #f3f4f6;
+  border: none;
+  transition: all 0.2s;
+}
+/* ارفع ال z-index لكل الـ overlays بتاعة Angular Material */
+
+.custom-dialog-container {
+  z-index: 10001 !important;
+}
+::ng-deep .custom-dialog-container {
+  border-radius: 20px !important;
+  overflow: hidden;
+}
+
+.quantity-btn:hover {
+  background: #e5e7eb;
+}
+
+.discount-badge {
+  background: #dcfce7;
+  color: #166534;
+  font-size: 0.875rem;
+  padding: 4px 8px;
+  border-radius: 6px;
+}

@@ -1,0 +1,173 @@
+<div class="orders-container">
+  <!-- Header Section -->
+
+  <!-- Search and Filter Section -->
+  <div class="filter-card">
+    <div class="row g-3 row-cols-1 row-cols-md-2 row-cols-lg-3">
+      <div class="col">
+        <mat-form-field appearance="outline" class="w-100">
+          <mat-label>🔍 Seach To Order</mat-label>
+          <input
+            matInput
+            type="text"
+            (keyup)="search($event.target)"
+            placeholder="Seach To Order.."
+          />
+          <mat-icon matSuffix>search</mat-icon>
+        </mat-form-field>
+      </div>
+
+      <div class="col">
+        <mat-form-field appearance="outline" class="w-100">
+          <mat-label>⚡Status</mat-label>
+          <mat-select (selectionChange)="SelectStatus($event)">
+            <mat-option value="">All Status</mat-option>
+            @for(status of Status; track status.value){
+            <mat-option [value]="status.value">
+              {{ status.name }}
+            </mat-option>
+            }
+          </mat-select>
+          <mat-icon matSuffix>filter_list</mat-icon>
+        </mat-form-field>
+      </div>
+
+      <div class="col">
+        <mat-form-field appearance="outline" class="w-100">
+          <mat-label>🕒Range Order</mat-label>
+          <mat-date-range-input [rangePicker]="picker">
+            <input
+              matStartDate
+              placeholder="From Date"
+              name="startDate"
+              (dateChange)="SelectDate($event, 'fromDate')"
+            />
+            <input
+              matEndDate
+              placeholder="To Date"
+              name="endDate"
+              (dateChange)="SelectDate($event, 'toDate')"
+            />
+          </mat-date-range-input>
+          <mat-datepicker-toggle
+            matIconSuffix
+            [for]="picker"
+          ></mat-datepicker-toggle>
+          <mat-date-range-picker #picker></mat-date-range-picker>
+        </mat-form-field>
+      </div>
+    </div>
+  </div>
+
+  <!-- Orders Table -->
+  <div class="table-wrapper">
+    <ngx-datatable
+      class="material striped hover"
+      style="overflow-x: auto"
+      [rows]="Orders"
+      [rowHeight]="60"
+      [headerHeight]="55"
+      [columnMode]="'force'"
+      [limit]="page.limit"
+      [count]="page.count"
+      [scrollbarH]="true"
+      [offset]="page.offset"
+      [footerHeight]="50"
+      [externalPaging]="true"
+      [pagination]="true"
+      (page)="onPageChange($event)"
+    >
+      <!-- Order ID Column -->
+      <ngx-datatable-column name="#" prop="orderID" [width]="80">
+        <ng-template let-row="row" ngx-datatable-cell-template>
+          <span class="order-id">#{{ row.orderID }}</span>
+        </ng-template>
+      </ngx-datatable-column>
+
+      <!-- Customer Column -->
+      <ngx-datatable-column name="📌Customer" prop="user.email" [width]="200">
+        <ng-template let-row="row" ngx-datatable-cell-template>
+          <div class="customer-info">
+            <span class="customer-name">{{ row.user.name }}</span>
+            <span class="customer-email text-muted">{{ row.user.email }}</span>
+          </div>
+        </ng-template>
+      </ngx-datatable-column>
+
+      <!-- Product Column -->
+      <ngx-datatable-column name="🛒Product" prop="product.name" [width]="200">
+        <ng-template let-row="row" ngx-datatable-cell-template>
+          <div class="product-info">
+            <span class="product-name">{{ row.product.name }}</span>
+            <span class="product-price text-muted">{{
+              row.product.price | currency : "SAR" : "symbol" : "1.2-2"
+            }}</span>
+          </div>
+        </ng-template>
+      </ngx-datatable-column>
+
+      <!-- Quantity Column -->
+      <ngx-datatable-column name="🛒Quantity" prop="quantity" [width]="100">
+        <ng-template let-row="row" ngx-datatable-cell-template>
+          <span class="quantity-badge">{{ row.quantity }}</span>
+        </ng-template>
+      </ngx-datatable-column>
+
+      <!-- Order Date Column -->
+      <ngx-datatable-column name="📅Date" prop="orderDate" [width]="130">
+        <ng-template let-row="row" ngx-datatable-cell-template>
+          <div class="date-info">
+            <span>{{ row.orderDate | date : "shortDate" }}</span>
+            <small class="text-muted">{{
+              row.orderDate | date : "shortTime"
+            }}</small>
+          </div>
+        </ng-template>
+      </ngx-datatable-column>
+
+      <!-- Status Column -->
+      <ngx-datatable-column name="📦Status" [width]="130">
+        <ng-template let-row="row" ngx-datatable-cell-template>
+          <span class="status-badge" [ngClass]="getStatusClass(+row.status)">
+            {{ getStatus(row.status) }}
+          </span>
+        </ng-template>
+      </ngx-datatable-column>
+
+      <!-- Change Status Column -->
+      <ngx-datatable-column name="⚡Change Status" [width]="160">
+        <ng-template let-row="row" ngx-datatable-cell-template>
+          <select
+            [value]="row.status"
+            (change)="onStatusChange($event, row)"
+            class="status-select"
+          >
+            <option value="0" disabled>🕒 Pending</option>
+            <option value="1" [disabled]="row.status > 1">📦 Confirmed</option>
+            <option value="2" [disabled]="row.status > 2">🚚 Shipped</option>
+            <option value="4" [disabled]="row.status > 4">❌ Cancelled</option>
+          </select>
+        </ng-template>
+      </ngx-datatable-column>
+
+      <!-- Details Button Column -->
+      <ngx-datatable-column name="🔍Details" [width]="130">
+        <ng-template let-row="row" ngx-datatable-cell-template>
+          <button
+            (click)="openDialog('300ms', '150ms', row)"
+            class="details-btn"
+          >
+            <i class="fas fa-file-alt"></i> Details
+          </button>
+        </ng-template>
+      </ngx-datatable-column>
+    </ngx-datatable>
+
+    <!-- No Results Message -->
+    <div *ngIf="Orders.length === 0" class="no-results">
+      <i class="fas fa-search"></i>
+      <h4>No Results Found</h4>
+      <p>There are no orders matching the specified search criteria.</p>
+    </div>
+  </div>
+</div>

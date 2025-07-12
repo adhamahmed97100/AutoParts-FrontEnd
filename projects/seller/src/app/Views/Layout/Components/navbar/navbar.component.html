@@ -1,0 +1,198 @@
+<div class="main-navbar shadow-sm sticky-top">
+  <div class="top-navbar">
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-md-2 d-none d-sm-none d-md-block d-lg-block">
+          <img src="Logo/1.svg" style="height: 45px" />
+        </div>
+        <div class="col-md-5 my-auto"></div>
+        <div class="col-md-5 my-auto">
+          <ul class="nav justify-content-end">
+            <li class="nav-item dropdown">
+              <a
+                class="nav-link notification-bell"
+                href="#"
+                id="navbarDropdown"
+                role="button"
+                data-bs-toggle="dropdown"
+              >
+                <i class="fa-solid fa-bell"></i>
+                <span class="notification-badge">{{
+                  notifications.length > 10 ? "10+" : notifications.length
+                }}</span>
+              </a>
+
+              <ul
+                class="dropdown-menu dropdown-menu-end notification-container"
+                style="
+                  min-width: 300px;
+                  max-height: 450px;
+                  border-radius: 20px;
+                  border: none;
+                  box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.2);
+                "
+                aria-labelledby="navbarDropdown"
+              >
+                @if(notifications.length > 0){
+                <li class="notification-header">
+                  <div
+                    class="d-flex justify-content-between align-items-center"
+                  >
+                    <span>Notification 🔔</span>
+                    <span class="notification-count"
+                      >{{ notifications.length }} New</span
+                    >
+                  </div>
+                </li>
+                <div class="notification-messages">
+                  @for (notification of notifications; track notification.id) {
+                  <li
+                    class="notification-item"
+                    (click)="
+                      notification.id === 'static-update-notification'
+                        ? openProductUpdateDialog()
+                        : notification.id === 'static-warning-notification'
+                        ? openProductWarningDialog()
+                        : null
+                    "
+                  >
+                    <div class="notification-content">
+                      <div class="notification-text">
+                        <i
+                          class="fa-solid"
+                          [ngClass]="{
+                            'fa-envelope':
+                              notification.type !== 'alert' &&
+                              notification.type !== 'warning',
+                            'fa-triangle-exclamation':
+                              notification.type === 'alert' ||
+                              notification.type === 'warning'
+                          }"
+                        ></i>
+                        <span
+                          class="fw-bold"
+                          [ngClass]="{
+                            'text-confirm':
+                              notification.title === 'Confirm Order',
+                            'text-shipped':
+                              notification.title === 'Shipped Order',
+                            'text-delivered':
+                              notification.title === 'Delivered Order',
+                            'text-cancelled':
+                              notification.title === 'Cancelled Order',
+                            'text-alert': notification.type === 'alert',
+
+                            'text-warning': notification.type === 'warning'
+                          }"
+                        >
+                          {{ notification.title }}
+                        </span>
+                        @if(!notification.isRead){
+                        <span class="unread-dot"></span>
+                        }
+                      </div>
+                      <small class="text-muted">{{
+                        notification.message
+                      }}</small>
+                      <div class="notification-meta">
+                        <small class="notification-time">{{
+                          notification.createdAt | date : "MMM d, h:mm a"
+                        }}</small>
+                      </div>
+                    </div>
+                  </li>
+                  }
+                </div>
+                <li class="notification-footer">
+                  <span>Show All Notifications</span>
+                  <i class="fa-solid fa-chevron-right"></i>
+                </li>
+                }@else{
+                <li class="text-center mt-5 mb-5">
+                  <div class="box-container">
+                    <div class="image-container">
+                      <img src="download.svg" alt="" />
+                    </div>
+                    <h2 class="title">Not Found Notification</h2>
+                  </div>
+                </li>
+                }
+              </ul>
+            </li>
+
+            <li class="nav-item dropdown">
+              <a
+                class="nav-link dropdown-toggle"
+                href="#"
+                id="navbarDropdown"
+                role="button"
+                data-bs-toggle="dropdown"
+                aria-expanded="false"
+              >
+                {{ Seller.name }}
+              </a>
+              <ul
+                class="dropdown-menu dropdown-menu-end"
+                style="
+                  min-width: 100px;
+                  max-height: 350px;
+                  overflow-y: auto;
+                  border-radius: 20px;
+                  border: none;
+                  box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.2);
+                "
+                aria-labelledby="navbarDropdown"
+                aria-labelledby="navbarDropdown"
+              >
+                <li>
+                  <button class="dropdown-item" href="#">
+                    <i class="fa fa-user" style="color: #213a59"></i> Profile
+                  </button>
+                </li>
+                <li>
+                  <button class="dropdown-item" [routerLink]="['./Dashboard']">
+                    <i class="fa fa-list" style="color: #213a59"></i> My Orders
+                  </button>
+                </li>
+                <li>
+                  <a class="dropdown-item" [routerLink]="['./AddProduct']">
+                    <i
+                      class="fas fa-plus-circle fa-fw"
+                      style="color: #213a59"
+                    ></i>
+                    Add Product
+                  </a>
+                </li>
+                <li>
+                  <a class="dropdown-item">
+                    <i
+                      class="fas fa-chart-line fa-fw"
+                      style="color: #213a59"
+                    ></i>
+                    Analytics
+                  </a>
+                </li>
+                <li>
+                  <button class="dropdown-item" (click)="Logout()">
+                    <i class="fa fa-sign-out" style="color: #213a59"></i> Logout
+                  </button>
+                </li>
+              </ul>
+            </li>
+
+            <img
+              loading="lazy"
+              [src]="
+                Seller.picture === null
+                  ? '307ce493-b254-4b2d-8ba4-d12c080d6651.jpg'
+                  : Seller.picture
+              "
+              class="rounded-circle profile-pic"
+              alt="Profile Picture"
+            />
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

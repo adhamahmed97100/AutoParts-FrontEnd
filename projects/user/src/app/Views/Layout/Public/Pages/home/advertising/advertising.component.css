@@ -1,0 +1,28 @@
+.grid-container {
+  display: grid;
+  grid-template-columns: 1fr 2fr 1fr;
+  grid-template-rows: auto auto;
+  gap: 15px;
+  align-items: center;
+  margin-bottom: -10px;
+}
+
+.grid-item img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+.small {
+  grid-column: 1;
+}
+
+.large {
+  grid-column: 2 / span 1;
+  grid-row: 1 / span 3;
+}
+
+.tall {
+  grid-column: 3;
+  grid-row: 1 / span 2;
+}

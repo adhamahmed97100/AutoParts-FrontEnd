@@ -1,0 +1,96 @@
+/* bmw-models-grid.component.css */
+.bmw-models-list {
+  max-width: 1300px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+.models-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 20px;
+}
+
+.model-card {
+  display: flex;
+  background-color: #f9f9f9;
+  align-items: center;
+  border: 1px solid #e0e0e0;
+  border-radius: 4px;
+  overflow: hidden;
+  height: 100px;
+  transition: box-shadow 0.3s ease;
+}
+
+.model-card:hover {
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  background-color: #2e5381;
+}
+.model-card:hover .model-name {
+  color: #fff;
+}
+.model-card:hover .details-button {
+  color: #ffffff;
+}
+.car-image {
+  width: 120px;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: none;
+  padding: 10px;
+}
+
+.car-image img {
+  max-width: 100%;
+  max-height: 100%;
+  image-rendering: crisp-edges;
+  image-rendering: -webkit-optimize-contrast;
+  filter: contrast(1.1) brightness(1.1);
+  object-fit: contain;
+}
+
+.model-details {
+  flex-grow: 1;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 8px;
+  height: 100%;
+  width: 5px;
+}
+
+.model-name {
+  font-size: 16px;
+  color: #213a59;
+  font-weight: 500;
+}
+
+.details-button {
+  background-color: transparent;
+  border: none;
+  color: #2e5381;
+  font-size: 24px;
+  cursor: pointer;
+  padding: 0;
+}
+
+/* Responsive Design */
+@media (max-width: 1200px) {
+  .models-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+@media (max-width: 900px) {
+  .models-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 600px) {
+  .models-grid {
+    grid-template-columns: 1fr;
+  }
+}

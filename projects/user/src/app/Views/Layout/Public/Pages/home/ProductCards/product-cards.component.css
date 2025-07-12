@@ -1,0 +1,101 @@
+.product-card {
+  transition: transform 0.3s ease-in-out;
+  height: 100%; /* تأكد أن الكارد يأخذ الارتفاع بالكامل */
+}
+
+.product-card:hover {
+  transform: translateY(-5px);
+}
+
+.badge-floating {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+}
+
+.product-image {
+  width: 100%;
+  height: 250px;
+  object-fit: contain;
+  background-color: #ffffff;
+  padding: 1px;
+  transition: transform 0.3s ease;
+}
+
+.product-card:hover .product-image {
+  transform: scale(1.05);
+}
+.btn-cart {
+  background-color: #264e7e;
+  color: #fff;
+  transition: background-color 0.3s ease;
+  &:hover {
+    background: #213a59;
+  }
+}
+
+.color-option {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  display: inline-block;
+  margin: 0 5px;
+  cursor: pointer;
+  border: 2px solid #fff;
+  box-shadow: 0 0 0 1px #ddd;
+}
+
+.color-option.active {
+  box-shadow: 0 0 0 2px #213a59;
+}
+::ng-deep .ngx-pagination .current {
+  padding: 8px 14px;
+  background: #264e7e !important;
+  border-radius: 10px;
+  color: #fefefe;
+  cursor: default;
+}
+/* Modern Rounded Pagination Theme */
+::ng-deep .ngx-pagination {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  padding: 15px;
+  gap: 8px;
+  font-family: "Segoe UI", sans-serif;
+}
+
+::ng-deep.ngx-pagination li {
+  list-style: none;
+}
+
+::ng-deep.ngx-pagination li a,
+.ngx-pagination li span {
+  padding: 8px 14px;
+  border-radius: 10px;
+  border: none;
+  background-color: #f1f3f5;
+  color: #333;
+  text-decoration: none;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+  transition: all 0.3s ease-in-out;
+  cursor: pointer;
+}
+
+::ng-deep.ngx-pagination li a:hover {
+  background-color: #264e7e;
+  color: white;
+  transform: translateY(-2px);
+}
+
+::ng-deep.ngx-pagination .disabled a,
+.ngx-pagination .disabled span {
+  background-color: #e9ecef;
+  color: #adb5bd;
+  cursor: not-allowed;
+  pointer-events: none;
+}
+html {
+  scroll-behavior: smooth !important;
+}

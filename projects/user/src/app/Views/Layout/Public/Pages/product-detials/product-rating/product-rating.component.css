@@ -1,0 +1,23 @@
+.star-rating {
+  font-size: 1.5rem;
+  color: #ffc107;
+  cursor: pointer;
+}
+
+.star-rating .bi-star-fill {
+  color: #ffc107;
+}
+
+.rating-star:hover,
+.rating-star:hover ~ .rating-star {
+  color: #ffc107;
+}
+.btn-review {
+  background-color: #1f4c7a;
+  color: #fff;
+  transition: background-color 0.3s ease;
+}
+
+.btn-review:hover {
+  background-color: #183a5b;
+}

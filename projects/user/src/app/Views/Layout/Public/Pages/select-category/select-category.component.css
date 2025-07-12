@@ -1,0 +1,109 @@
+/* oil-filter-manufacturers.component.css */
+.wrapper {
+  background-color: #f9f9f9;
+}
+
+.oil-filter-page {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+  font-family: Arial, sans-serif;
+}
+
+.breadcrumb {
+  color: #666;
+  margin-bottom: 15px;
+  font-size: 14px;
+}
+
+.content-container {
+  display: flex;
+  align-items: center;
+  gap: 50px;
+}
+
+.filter-images {
+  flex: 1;
+  max-width: 400px;
+}
+
+.filter-images img {
+  max-width: 100%;
+  image-rendering: crisp-edges;
+  image-rendering: -webkit-optimize-contrast;
+  filter: contrast(1.1) brightness(1.1);
+  height: auto;
+}
+
+.manufacturers-section {
+  flex: 2;
+}
+
+h1 {
+  font-family: "Arial", sans-serif;
+  font-size: 28px;
+  font-weight: 700;
+  color: #1f4c7a;
+  margin-bottom: 35px;
+  position: relative;
+}
+
+h2 {
+  color: #666;
+  font-size: 18px;
+  margin-bottom: 20px;
+}
+
+.manufacturers-carousel {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.manufacturers-logos {
+  display: flex;
+  gap: 40px;
+  overflow: hidden;
+}
+
+.manufacturer-logo {
+  max-height: 50px;
+  max-width: 100px;
+  transition: filter 0.3s ease;
+}
+
+.manufacturer-logo:hover {
+  filter: grayscale(0%);
+}
+
+.nav-button {
+  background: none;
+  border: none;
+  font-size: 24px;
+  color: #999;
+  cursor: pointer;
+}
+
+.slide-indicators {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  margin-top: 20px;
+}
+
+.indicator {
+  width: 10px;
+  height: 10px;
+  background-color: #ddd;
+  border-radius: 50%;
+}
+
+.indicator.active {
+  background-color: #007bff;
+}
+
+@media (max-width: 768px) {
+  .content-container {
+    flex-direction: column;
+  }
+}

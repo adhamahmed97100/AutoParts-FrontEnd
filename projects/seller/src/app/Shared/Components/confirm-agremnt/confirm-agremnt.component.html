@@ -1,0 +1,80 @@
+<div class="agreement-container" style="border-radius: 50px">
+  <h2 mat-dialog-title class="agreement-title">Seller Agreement</h2>
+  <mat-dialog-content class="mat-typography agreement-content">
+    <div class="agreement-section">
+      <h3 class="section-title">Agreement Terms</h3>
+      <p class="section-text">
+        By accepting this agreement, the seller agrees to comply with the
+        following terms and conditions:
+      </p>
+    </div>
+
+    <div class="agreement-section">
+      <h3 class="section-title">Inventory Updates</h3>
+      <div class="section-content">
+        <p>
+          The seller is required to update their inventory status on a weekly
+          basis. Updates must include:
+        </p>
+        <ul class="feature-list">
+          <li><mat-icon>check_circle</mat-icon> Current product quantities</li>
+          <li><mat-icon>check_circle</mat-icon> Product availability status</li>
+          <li><mat-icon>check_circle</mat-icon> Price updates if applicable</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="agreement-section">
+      <h3 class="section-title">Non-Compliance Consequences</h3>
+      <div class="section-content">
+        <p>In case of failure to update inventory weekly:</p>
+        <ul class="warning-list">
+          <li>
+            <mat-icon>warning</mat-icon> Seller will receive a warning
+            notification
+          </li>
+          <li>
+            <mat-icon>block</mat-icon> Products will be blocked from the website
+            after repeated violations
+          </li>
+          <li>
+            <mat-icon>refresh</mat-icon> Products will only be reactivated after
+            compliance with terms
+          </li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="agreement-section">
+      <h3 class="section-title">Additional Obligations</h3>
+      <div class="section-content">
+        <p>The seller must also:</p>
+        <ul class="feature-list">
+          <li>
+            <mat-icon>verified</mat-icon> Provide accurate product information
+          </li>
+          <li>
+            <mat-icon>schedule</mat-icon> Respond to customer inquiries promptly
+          </li>
+          <li>
+            <mat-icon>policy</mat-icon> Adhere to website policies and
+            guidelines
+          </li>
+        </ul>
+      </div>
+    </div>
+  </mat-dialog-content>
+  <mat-dialog-actions align="end" class="dialog-actions">
+    <button mat-button mat-dialog-close class="cancel-button">Cancel</button>
+    <button
+      mat-raised-button
+      color="primary"
+      [mat-dialog-close]="true"
+      cdkFocusInitial
+      class="accept-button"
+      style="background-color: #002a47"
+    >
+      Accept
+    </button>
+  </mat-dialog-actions>
+</div>

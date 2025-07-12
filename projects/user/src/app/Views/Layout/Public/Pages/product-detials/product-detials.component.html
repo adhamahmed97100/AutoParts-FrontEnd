@@ -1,0 +1,157 @@
+<div class="py-3 py-md-5">
+  <div class="container">
+    <div class="row">
+      <!-- Product Images -->
+      <div class="col-md-6 mb-4">
+        <div class="product-image-container">
+          <div *ngIf="!isLoaded" class="skeleton-loader"></div>
+          <img
+            *ngIf="isLoaded"
+            [lazyLoad]="selectedImage || Ip + '/images/' + MainImage"
+            [defaultImage]="''"
+            class="img-fluid rounded mb-3 product-image"
+            id="mainImage"
+            (error)="onImageError($event)"
+          />
+        </div>
+        <div
+          class="d-flex thumbnails-container flex-wrap justify-content-center"
+        >
+          @for (image of product.images; track image.id) {
+
+          <img
+            [lazyLoad]="Ip + '/images/' + image.image"
+            [defaultImage]="'Loding.svg'"
+            class="thumbnail rounded"
+            (load)="onImageLoad()"
+            (mousemove)="changeImage($event, Ip + '/images/' + image.image)"
+          />
+          }
+        </div>
+      </div>
+
+      <!-- Product Details -->
+      <div class="col-md-6">
+        <h2 class="mb-3">{{ product.name }}</h2>
+        <p class="text-muted mb-4">SKU: {{ product.suk }}</p>
+        <div class="mb-3">
+          <span class="h4 me-2">EGP{{ product.price }}</span>
+          <span class="text-muted"
+            ><s> EGP {{ (product.price * (1 + 0.2)).toFixed(2) }}</s></span
+          >
+        </div>
+        <div class="mb-3">
+          <div class="text-warning">
+            @for (i of [1,2,3,4,5] ; track i) {
+            <i
+              class="
+                  {{
+                i <= fullStars(product.averageRating)
+                  ? 'fa-solid fa-star'
+                  : fullStars(product.averageRating) &&
+                    i - 0.5 <= product.averageRating
+                  ? 'fa-solid fa-star-half-alt'
+                  : 'fa-regular fa-star'
+              }} "
+              aria-hidden="true"
+            ></i>
+            }
+          </div>
+          <span class="ms-2"
+            >{{ product.averageRating.toFixed(2) }} ({{
+              product.reviewDto.length
+            }}
+            reviews)</span
+          >
+        </div>
+
+        <div class="mb-4 description" [innerHTML]="product.description"></div>
+
+        <div class="mb-4">
+          <label for="quantity" class="form-label">Quantity:</label>
+          <input
+            type="number"
+            class="form-control"
+            id="quantity"
+            #quantity
+            value="1"
+            min="1"
+            style="width: 80px"
+          />
+        </div>
+        <button
+          (click)="AddToCard(+quantity.value).subscribe()"
+          class="btn btn-cart btn-lg mb-3 me-2"
+        >
+          <i class="bi bi-cart-plus"></i> Add to Cart
+        </button>
+        <button class="btn btn-outline-secondary btn-lg mb-3 me-2">
+          <i class="bi bi-heart"></i> Add to Wishlist
+        </button>
+        <button
+          (click)="OrderNow(+quantity.value)"
+          class="btn btn-success btn-lg mb-3 me-3"
+        >
+          <i class="fa-solid fa-plus"></i> Order Now
+        </button>
+        <div class="mt-4">
+          <h5>Key Features:</h5>
+          <ul>
+            <li>Industry-leading noise cancellation</li>
+            <li>30-hour battery life</li>
+            <li>Touch sensor controls</li>
+            <li>Speak-to-chat technology</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <app-product-rating [Productid]="product.productID"></app-product-rating>
+
+    <!-- Customer Reviews Section -->
+    <div class="product-reviews mt-5">
+      <h4 class="mb-4 title border-bottom pb-2">Customer Reviews</h4>
+      <div class="reviews-list">
+        @for (review of product.reviewDto | paginate: { id: 'foo', itemsPerPage:
+        pageSize, currentPage: p, totalItems: total }; track review.reviewID) {
+        <div class="review-item p-4 mb-4 rounded shadow-sm bg-white border">
+          <div class="d-flex justify-content-between align-items-center mb-2">
+            <div class="d-flex align-items-center">
+              <i class="fa-solid fa-user-circle fa-lg me-2 text-secondary"></i>
+              <strong class="text-dark">{{ review.user.name }}</strong>
+            </div>
+            <div class="review-rating">
+              @for (rate of [1, 2, 3, 4, 5]; track rate) {
+              <i
+                class="fa-solid"
+                [class]="{
+                  'fa-star': rate <= review.rating,
+                  'fa-star-o': rate > review.rating
+                }"
+                aria-hidden="true"
+              ></i>
+              }
+            </div>
+          </div>
+          <p class="mb-2 text-secondary fst-italic">"{{ review.comment }}"</p>
+          <span class="time text-muted small">
+            <i class="fa-regular fa-clock me-1"></i>{{ review.reviewDate }}
+          </span>
+        </div>
+        }
+      </div>
+
+      <pagination-controls
+        id="foo"
+        (pageChange)="pageChanged($event)"
+        (pageBoundsCorrection)="pageChanged($event)"
+        previousLabel="Previous"
+        nextLabel="Next"
+        screenReaderPaginationLabel="Pagination"
+        screenReaderPageLabel="page"
+        screenReaderCurrentLabel="You're on page"
+      >
+      </pagination-controls>
+    </div>
+  </div>
+</div>

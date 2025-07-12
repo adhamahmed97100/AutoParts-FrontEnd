@@ -1,0 +1,66 @@
+<div class="form-container" [@slideInOut]>
+  <h1 class="form-title">Setup your account</h1>
+  <p class="form-subtitle">
+    Please provide your email address to create your seller account
+  </p>
+
+  @if(!showOtpInput){
+  <form [formGroup]="accountForm">
+    <mat-form-field appearance="outline" class="w-100">
+      <mat-label>Email</mat-label>
+      <input
+        matInput
+        type="email"
+        id="loginEmail"
+        formControlName="email"
+        required
+      />
+      <mat-icon matSuffix>email</mat-icon>
+      @if (accountForm.get('email')?.hasError('required')) {
+      <mat-error> Email Is Required </mat-error>
+      } @if (accountForm.get('email')?.hasError('EamilIsExist')) {
+      <mat-error> Email Is Exist </mat-error>
+      } @if (accountForm.get('email')?.hasError('email')) {
+      <mat-error> Email Is Invalid </mat-error>
+      }
+    </mat-form-field>
+  </form>
+  }@else {
+  <form [formGroup]="otpForm">
+    <mat-form-field appearance="outline" class="w-100">
+      <mat-label>Enter OTP</mat-label>
+      <input
+        matInput
+        type="text"
+        id="otpInput"
+        formControlName="otp"
+        required
+      />
+      @if(countdown > 0){
+      <mat-error>
+        Time left: {{ countdownMinutes }}:{{ countdownSeconds }}</mat-error
+      >
+      }
+    </mat-form-field>
+  </form>
+  } @if(showOtpInput) { @if(countdown<=0){
+  <button (click)="Sendotp()" class="submit-button">RESEND OTP</button>
+  }@else {
+  <button
+    type="submit"
+    [disabled]="this.otpForm.invalid"
+    (click)="submit()"
+    class="submit-button"
+  >
+    SEND OTP
+  </button>
+  } }@else {
+  <button
+    (click)="Sendotp()"
+    [disabled]="this.accountForm.invalid"
+    class="submit-button"
+  >
+    VERIFY
+  </button>
+  }
+</div>

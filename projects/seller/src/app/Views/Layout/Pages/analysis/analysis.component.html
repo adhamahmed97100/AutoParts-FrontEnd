@@ -1,0 +1,147 @@
+<div class="container py-4" [ngClass]="{ 'dark-mode': isDarkMode }">
+  <!-- رأس لوحة التحكم -->
+  <div class="dashboard-header">
+    <h1 class="dashboard-title">Analytics Dashboard</h1>
+    <button class="theme-toggle" (click)="toggleTheme()">
+      <i class="fa" [ngClass]="isDarkMode ? 'fa-sun' : 'fa-moon'"></i>
+      {{ isDarkMode ? "Light Mode" : "Dark Mode" }}
+    </button>
+  </div>
+
+  <!-- القسم الرئيسي -->
+  <div class="row">
+    <!-- إحصائيات سريعة -->
+    <div class="col-md-12">
+      <div class="row">
+        <div class="col-sm-6 col-md-3 mb-4" *ngFor="let stat of quickStats">
+          <div class="dashboard-card stat-card">
+            <div class="d-flex align-items-center">
+              <div class="flex-shrink-0">
+                <div class="stat-icon" [ngStyle]="{ color: stat.color }">
+                  <i class="fas {{ stat.icon }} fa-2x"></i>
+                </div>
+              </div>
+              <div class="flex-grow-1 ms-3">
+                <div class="stat-value">{{ stat.value }}</div>
+                <div class="stat-label">{{ stat.label }}</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- المخططات البيانية الرئيسية -->
+    <div class="col-md-12">
+      <!-- الإيرادات الشهرية -->
+      <div class="dashboard-card">
+        <h3>Monthly Revenue</h3>
+        <div class="MonthlyRevenue">
+          <ngx-charts-bar-vertical
+            [results]="revenueData"
+            [scheme]="colorScheme"
+            [gradient]="gradient"
+            [xAxis]="showXAxis"
+            [yAxis]="showYAxis"
+            [legend]="false"
+            [showXAxisLabel]="showXAxisLabel"
+            [showYAxisLabel]="showYAxisLabel"
+            xAxisLabel="Month"
+            yAxisLabel="Revenue (EGP)"
+            [animations]="animations"
+            [roundEdges]="roundEdges"
+            [xAxisTickFormatting]="isDarkMode ? null : null"
+          >
+          </ngx-charts-bar-vertical>
+        </div>
+      </div>
+
+      <!-- المبيعات حسب الموقع -->
+      <div class="dashboard-card">
+        <h3>Sales by Location</h3>
+        <div class="SalesbyLocation">
+          <ngx-charts-bar-vertical
+            [results]="salesByLocation"
+            [scheme]="colorScheme"
+            [gradient]="gradient"
+            [xAxis]="showXAxis"
+            [yAxis]="showYAxis"
+            [legend]="false"
+            [showXAxisLabel]="showXAxisLabel"
+            [showYAxisLabel]="showYAxisLabel"
+            xAxisLabel="Location"
+            yAxisLabel="Revenue (EGP)"
+            [animations]="animations"
+            [roundEdges]="roundEdges"
+          >
+          </ngx-charts-bar-vertical>
+        </div>
+      </div>
+
+      <!-- رسوم بيانية دائرية جنباً إلى جنب -->
+      <div class="dual-charts">
+        <div class="dashboard-card">
+          <h3>Order Status</h3>
+          <div class="OrderStatus">
+            <ngx-charts-pie-chart
+              [results]="orderStatus"
+              [scheme]="colorScheme"
+              [gradient]="gradient"
+              [legend]="showLegend"
+              [labels]="showLabels"
+              [doughnut]="false"
+              [animations]="animations"
+            >
+            </ngx-charts-pie-chart>
+          </div>
+        </div>
+
+        <div class="dashboard-card">
+          <h3>Payment Methods</h3>
+          <div class="PaymentMethod">
+            <ngx-charts-pie-chart
+              [results]="paymentMethodsData"
+              [scheme]="colorScheme"
+              [gradient]="gradient"
+              [doughnut]="true"
+              [legend]="showLegend"
+              [labels]="showLabels"
+              [animations]="animations"
+            >
+            </ngx-charts-pie-chart>
+          </div>
+        </div>
+      </div>
+
+      <!-- المنتجات الأكثر مبيعاً -->
+      <div class="dashboard-card">
+        <h3>Top 5 Products</h3>
+        <div class="Top5ProductsSales">
+          <ngx-charts-bar-horizontal
+            [results]="revenueDataCar"
+            [scheme]="colorScheme"
+            [gradient]="gradient"
+            [xAxis]="showXAxis"
+            [yAxis]="showYAxis"
+            [legend]="false"
+            [showXAxisLabel]="showXAxisLabel"
+            [showYAxisLabel]="showYAxisLabel"
+            xAxisLabel="Quantity"
+            yAxisLabel="Products"
+            [roundEdges]="roundEdges"
+            [animations]="animations"
+            [barPadding]="barPadding"
+          >
+          </ngx-charts-bar-horizontal>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- قسم التذييل -->
+  <div class="dashboard-footer text-center mt-4">
+    <p class="small text-muted">
+      © 2025 Analytics Dashboard. All rights reserved.
+    </p>
+  </div>
+</div>

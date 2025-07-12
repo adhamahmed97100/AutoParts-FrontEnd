@@ -1,0 +1,20 @@
+<!-- bmw-models-grid.component.html -->
+<div class="bmw-models-list">
+  <div class="models-grid">
+    @for (model of models; track model.id) {
+    <div (click)="selectModel(model.id)" class="model-card">
+      <div class="car-image">
+        <img
+          [lazyLoad]="IP + '/images/Models/' + model.image"
+          [defaultImage]="'Loding.svg'"
+          [alt]="model.name"
+        />
+      </div>
+      <div class="model-details">
+        <span class="model-name">{{ model.name }}</span>
+        <button class="details-button">›</button>
+      </div>
+    </div>
+    }
+  </div>
+</div>

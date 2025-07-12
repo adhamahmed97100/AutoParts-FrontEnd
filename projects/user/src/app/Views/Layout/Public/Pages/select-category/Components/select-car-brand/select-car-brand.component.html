@@ -1,0 +1,21 @@
+<div class="car-brands-wrapper">
+  <h2>Find out what fits your type of car</h2>
+
+  <div class="carousel-container">
+    <div class="brands-grid">
+      @for (brand of carBrands; track brand.id) {
+      <div
+        class="container brand-logo-container"
+        (click)="selectBrand(brand.id)"
+      >
+        <img
+          [lazyLoad]="IP + '/images/CarBrand/' + brand.image"
+          [defaultImage]="'Loding.svg'"
+          [alt]="brand.name"
+          class="brand-logo"
+        />
+      </div>
+      }
+    </div>
+  </div>
+</div>

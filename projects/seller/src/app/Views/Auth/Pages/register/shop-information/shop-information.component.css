@@ -1,0 +1,308 @@
+.form-container {
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 1.5rem;
+}
+
+/* Header Section */
+.form-header {
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+.form-title {
+  font-size: 1.8rem;
+  font-weight: 600;
+  margin-bottom: 0.75rem;
+  font-size: 24px;
+  font-weight: bold;
+  text-transform: uppercase;
+  background: linear-gradient(135deg, #1e1b2e 0%, #2b5384 100%);
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  text-align: center;
+  letter-spacing: 1px;
+  font-family: "Arial", sans-serif;
+  line-height: 1.3;
+}
+
+.form-subtitle {
+  font-size: 1rem;
+  color: #666;
+  max-width: 80%;
+  display: flex;
+  justify-content: center;
+  text-align: center;
+  margin: auto;
+  margin-bottom: 15px;
+}
+
+/* Account Type Selection */
+.account-type {
+  margin-bottom: 2rem;
+}
+
+.account-type label {
+  display: flex;
+  align-items: center;
+  margin-bottom: 0.75rem;
+  font-weight: 500;
+  color: #444;
+}
+
+.account-type .info-icon {
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #1e1b2e 0%, #2b5384 100%);
+  color: white;
+  font-size: 0.7rem;
+  margin-left: 0.5rem;
+  cursor: pointer;
+  transition: transform 0.2s ease;
+}
+
+.account-type .info-icon:hover {
+  transform: scale(1.1);
+}
+
+.account-type .account-options {
+  display: flex;
+  gap: 1rem;
+}
+
+.account-type .account-options .option {
+  flex: 1;
+  padding: 1.25rem 1rem;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  background-color: white;
+}
+
+.account-type .account-options .option:hover {
+  border-color: #b3b1c2;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+}
+
+.account-type .account-options .option.selected {
+  border-color: #2b5384;
+  background-color: #f8f7ff;
+  box-shadow: 0 2px 8px rgba(92, 77, 195, 0.1);
+}
+
+.account-type .account-options .option.selected .radio-button {
+  background: linear-gradient(135deg, #1e1b2e 0%, #2b5384 100%);
+  border-color: #2b5384;
+}
+
+.account-type .account-options .option .icon {
+  margin-right: 0.75rem;
+  font-size: 1.5rem;
+  color: #2b5384;
+}
+
+.account-type .account-options .option .label {
+  flex-grow: 1;
+  font-size: 0.95rem;
+  font-weight: 500;
+}
+
+.account-type .account-options .option .radio-button {
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  border: 2px solid #ddd;
+  transition: all 0.2s ease;
+}
+
+/* Form Fields */
+.form-field {
+  margin-bottom: 1.75rem;
+  position: relative;
+}
+
+.form-field label {
+  display: flex;
+  align-items: center;
+  margin-bottom: 0.5rem;
+  font-weight: 500;
+  color: #444;
+}
+
+.form-field label .required {
+  color: #e53935;
+  margin-left: 0.2rem;
+}
+
+.form-field input,
+.form-field select {
+  width: 100%;
+  padding: 0.85rem;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  font-size: 1rem;
+  transition: all 0.2s ease;
+  background-color: white;
+}
+
+.form-field input:focus,
+.form-field select:focus {
+  outline: none;
+  border-color: #2b5384;
+  box-shadow: 0 0 0 2px rgba(92, 77, 195, 0.1);
+}
+
+.form-field .info-icon {
+  position: absolute;
+  right: -25px;
+  top: 32px;
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #1e1b2e 0%, #2b5384 100%);
+  color: white;
+  font-size: 0.7rem;
+  cursor: pointer;
+  transition: transform 0.2s ease;
+}
+
+.form-field .info-icon:hover {
+  transform: scale(1.1);
+}
+
+.form-field .dropdown {
+  position: relative;
+}
+
+.form-field .dropdown select {
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  padding-right: 2.5rem;
+  cursor: pointer;
+}
+
+.form-field .dropdown .dropdown-arrow {
+  position: absolute;
+  right: 1rem;
+  top: 50%;
+  transform: translateY(-50%);
+  pointer-events: none;
+  color: #666;
+  font-size: 1rem;
+}
+
+.form-field .error-message {
+  display: block;
+  color: #e53935;
+  font-size: 0.8rem;
+  margin-top: 0.3rem;
+  min-height: 1em;
+}
+
+/* Checkbox Group */
+.checkbox-group {
+  margin-bottom: 2.5rem;
+}
+
+.checkbox-group .checkbox {
+  display: flex;
+  align-items: flex-start;
+  margin-bottom: 0.5rem;
+}
+
+.checkbox-group .checkbox input {
+  margin-top: 0.25rem;
+  margin-right: 0.75rem;
+  accent-color: #2b5384;
+  cursor: pointer;
+}
+
+.checkbox-group .checkbox label {
+  font-size: 0.9rem;
+  line-height: 1.5;
+  color: #444;
+  cursor: pointer;
+}
+
+.checkbox-group .checkbox label a {
+  color: #2b5384;
+  text-decoration: none;
+  font-weight: 500;
+  transition: all 0.2s ease;
+}
+
+.checkbox-group .checkbox label a:hover {
+  text-decoration: underline;
+  color: #3a2d8a;
+}
+
+.checkbox-group .error-message {
+  display: block;
+  color: #e53935;
+  font-size: 0.8rem;
+  margin-top: 0.3rem;
+}
+
+/* Submit Button */
+.submit-button {
+  width: 100%;
+  padding: 1rem;
+  background-color: #1e1b2e;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  margin-top: 0.5rem;
+}
+
+.submit-button:disabled {
+  background-color: #bdbdbd;
+  cursor: not-allowed;
+}
+
+.submit-button:not(:disabled):hover {
+  background: linear-gradient(135deg, #1e1b2e 0%, #2b5384 100%);
+  transform: translateY(-1px);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.submit-button:active {
+  transform: translateY(0);
+}
+
+/* Responsive Adjustments */
+@media (max-width: 768px) {
+  .form-header .form-title {
+    font-size: 1.6rem;
+  }
+
+  .form-header .form-subtitle {
+    max-width: 100%;
+  }
+
+  .account-type .account-options {
+    flex-direction: column;
+  }
+
+  .account-type .account-options .option {
+    width: 100%;
+  }
+
+  .form-field .info-icon {
+    right: -20px;
+  }
+}

@@ -1,0 +1,40 @@
+<nav id="sidebarMenu" class="collapse d-lg-block sidebar collapse bg-white">
+  <div class="position-sticky">
+    <div class="list-group list-group-flush mx-3 mt-4">
+      <a
+        [routerLink]="['./Dashboard']"
+        routerLinkActive="active"
+        class="list-group-item list-group-item-action py-2"
+        data-mdb-ripple-init
+        aria-current="true"
+      >
+        <i class="fa-solid fa-user-tie me-3"></i>
+        <span>Main dashboard</span>
+      </a>
+
+      <a
+        [routerLink]="['./AddProduct']"
+        routerLinkActive="active"
+        class="list-group-item list-group-item-action py-2"
+        data-mdb-ripple-init
+        ><i class="fas fa-plus-circle fa-fw me-3"></i
+        ><span>New Product</span></a
+      >
+      <a
+        [routerLink]="['./Analysis']"
+        routerLinkActive="active"
+        class="list-group-item list-group-item-action py-2"
+        data-mdb-ripple-init
+        ><i class="fas fa-chart-line fa-fw me-3"></i><span>Analytics</span></a
+      >
+      <a
+        MangeProduct
+        [routerLink]="['./ManagmentProduct']"
+        routerLinkActive="active"
+        class="list-group-item list-group-item-action py-2"
+        data-mdb-ripple-init
+        ><i class="fas fa-chart-bar fa-fw me-3"></i><span>Managment</span></a
+      >
+    </div>
+  </div>
+</nav>

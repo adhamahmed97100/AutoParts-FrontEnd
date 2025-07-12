@@ -1,0 +1,176 @@
+<div class="cart-wrapper">
+  <div class="container">
+    <div class="row g-4">
+      <!-- Cart Items Section -->
+      <div class="col-lg-8">
+        <div class="d-flex justify-content-between align-items-center mb-4">
+          <h2 class="mb-0 Head">Shopping Cart</h2>
+          <span class="text-muted">{{ Card.cardItemsDtos.length }} items</span>
+        </div>
+        @if(Card.cardItemsDtos.length > 0){ @for (cardItems of
+        Card.cardItemsDtos ; track cardItems.id ) {
+        <!-- Product Cards -->
+        <div class="d-flex flex-column gap-3">
+          <!-- Product 3 -->
+          <div class="product-card p-3 shadow-sm mb-3">
+            <div class="row align-items-center">
+              <div
+                class="col-md-2"
+                (click)="goToProduct(cardItems.product.productID)"
+              >
+                <img
+                  *ngIf="getMainImage(cardItems.product.imagesDto) as mainImg"
+                  [lazyLoad]="Ip + '/Images/' + mainImg"
+                  [defaultImage]="'Loding.svg'"
+                  class="product-image"
+                />
+              </div>
+              <div class="col-md-4">
+                <h6 class="mb-1">{{ cardItems.product.name }}</h6>
+                <!-- <p
+                      class="text-muted mb-0"
+                      [innerHTML]="cardItems.product.description.slice(0, 300)"
+                    ></p> -->
+              </div>
+              <div class="col-md-3">
+                <div class="d-flex align-items-center gap-2">
+                  <button
+                    class="quantity-btn"
+                    (click)="
+                      updateQuantity(cardItems.id, cardItems.quantity - 1)
+                    "
+                  >
+                    -
+                  </button>
+                  <input
+                    type="number"
+                    class="quantity-input"
+                    value="{{ cardItems.quantity }}"
+                    disabled
+                    min="1"
+                  />
+                  <button
+                    class="quantity-btn"
+                    (click)="
+                      updateQuantity(cardItems.id, cardItems.quantity + 1)
+                    "
+                  >
+                    +
+                  </button>
+                </div>
+              </div>
+              <div class="col-md-2">
+                <span class="fw-bold">EGP {{ cardItems.product.price }}</span>
+              </div>
+              <div (click)="DeleteCartItems(cardItems.id)" class="col-md-1">
+                <i
+                  class="fa-solid fa-trash"
+                  style="color: red; cursor: pointer"
+                ></i>
+              </div>
+            </div>
+          </div>
+        </div>
+        } }@else {
+        <div class="d-flex justify-content-center" style="margin-top: 10%">
+          <app-not-found></app-not-found>
+        </div>
+
+        }
+      </div>
+
+      <!-- Summary Section -->
+      <div class="col-lg-4">
+        <div class="summary-card p-4 shadow-sm">
+          <h5 class="mb-4">Order Summary</h5>
+
+          <div class="d-flex justify-content-between mb-3">
+            <span class="text-muted">Subtotal</span>
+            <span>EGP {{ orderSummary.Subtotal.toFixed(2) }}</span>
+          </div>
+          <div class="d-flex justify-content-between mb-3">
+            <span class="text-muted">Discount</span>
+            <span class="text-success"
+              >EGP {{ orderSummary.Discount.toFixed(2) }}</span
+            >
+          </div>
+          <div class="d-flex justify-content-between mb-3">
+            <span class="text-muted">Shipping</span>
+            <span>EGP {{ orderSummary.Shipping.toFixed(2) }}</span>
+          </div>
+          <hr />
+          <div class="d-flex justify-content-between mb-4">
+            <span class="fw-bold">Total</span>
+            <span class="fw-bold">EGP {{ orderSummary.Total.toFixed(2) }}</span>
+          </div>
+
+          <!-- Promo Code -->
+          <div class="mb-4">
+            <div class="input-group">
+              <input
+                type="text"
+                class="form-control"
+                placeholder="Promo code"
+              />
+              <button class="btn btn-outline-secondary" type="button">
+                Apply
+              </button>
+            </div>
+          </div>
+
+          <mat-vertical-stepper
+            [linear]="false"
+            #stepper
+            [animationDuration]="'1500'"
+          >
+            <mat-step>
+              <ng-template matStepLabel>Your Address</ng-template>
+              <button
+                class="btn btn-warning w-100 mb-3 mt-3"
+                (click)="openPopupIfLocationEnabled(stepper)"
+              >
+                Address
+              </button>
+              <div>
+                <button mat-button matStepperNext>Next</button>
+              </div>
+            </mat-step>
+            <mat-step>
+              <ng-template matStepLabel>Your Phone</ng-template>
+              <button
+                [disabled]="isPhoneDisabled"
+                class="btn btn-success w-100 mb-3 mt-3"
+                (click)="openPhoneDialog(stepper)"
+              >
+                Phone
+              </button>
+              <div>
+                <button mat-button matStepperPrevious>Back</button>
+                <button mat-button matStepperNext>Next</button>
+              </div>
+            </mat-step>
+            <mat-step>
+              <ng-template matStepLabel>Checkout</ng-template>
+              <button
+                [disabled]="isCheckoutDisabled"
+                (click)="Checkout()"
+                class="btn btn-primary checkout-btn w-100 mb-3 mt-3"
+              >
+                Proceed to Checkout
+              </button>
+
+              <div>
+                <button mat-button matStepperPrevious>Back</button>
+                <button mat-button (click)="stepper.reset()">Reset</button>
+              </div>
+            </mat-step>
+          </mat-vertical-stepper>
+          <div class="d-flex justify-content-center gap-2">
+            <i class="bi bi-shield-check text-success"></i>
+            <small class="text-muted">Secure checkout</small>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

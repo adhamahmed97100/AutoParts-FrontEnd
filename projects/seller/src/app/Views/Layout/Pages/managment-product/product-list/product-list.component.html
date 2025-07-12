@@ -1,0 +1,139 @@
+<div class="container mt-3 mb-3 text-center product-header">
+  <h2><i class="fas fa-box-open"></i> Products List</h2>
+</div>
+
+<section>
+  <div class="row">
+    <div class="col-xl-6 col-md-12 mb-4">
+      <div class="card">
+        <div class="card-body">
+          <div class="d-flex justify-content-between p-md-1">
+            <div class="d-flex flex-row">
+              <div class="align-self-center">
+                <i class="fas fa-pencil-alt text-info fa-3x me-4"></i>
+              </div>
+              <div>
+                <h4>Total Posts</h4>
+                <p class="mb-0">Monthly blog posts</p>
+              </div>
+            </div>
+            <div class="align-self-center">
+              <h2 class="h1 mb-0">18,000</h2>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-xl-6 col-md-12 mb-4">
+      <div class="card">
+        <div class="card-body">
+          <div class="d-flex justify-content-between p-md-1">
+            <div class="d-flex flex-row">
+              <div class="align-self-center">
+                <i class="far fa-comment-alt text-warning fa-3x me-4"></i>
+              </div>
+              <div>
+                <h4>Total Comments</h4>
+                <p class="mb-0">Monthly blog posts</p>
+              </div>
+            </div>
+            <div class="align-self-center">
+              <h2 class="h1 mb-0">84,695</h2>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="container row g-3">
+  <div class="col">
+    <mat-form-field appearance="outline" class="w-100">
+      <mat-label>🔍 Product </mat-label>
+      <input matInput type="text" (keyup)="Search($event.target)" />
+      <mat-icon matSuffix>category</mat-icon>
+    </mat-form-field>
+  </div>
+
+  <div class="col">
+    <mat-form-field appearance="outline" class="w-100">
+      <mat-label>🕒 Choose Create Date Range</mat-label>
+      <mat-date-range-input [rangePicker]="picker">
+        <input matStartDate placeholder="From date" name="startDate" />
+        <input matEndDate placeholder="To date" name="endDate" />
+      </mat-date-range-input>
+      <mat-datepicker-toggle
+        matIconSuffix
+        [for]="picker"
+      ></mat-datepicker-toggle>
+      <mat-date-range-picker #picker></mat-date-range-picker>
+    </mat-form-field>
+  </div>
+</div>
+<ngx-datatable
+  class="material"
+  [rows]="products"
+  [rowHeight]="'auto'"
+  [headerHeight]="50"
+  [columnMode]="'force'"
+  [footerHeight]="50"
+  [limit]="page.limit"
+  [count]="page.count"
+  [scrollbarH]="true"
+  [offset]="page.pageNumber - 1"
+  [externalPaging]="true"
+  [pagination]="true"
+  (page)="onPageChange($event)"
+>
+  <ngx-datatable-column name="#" prop="id"></ngx-datatable-column>
+  <ngx-datatable-column name="📌 Name" prop="name">
+    <ng-template let-row="row" ngx-datatable-cell-template>
+      <span> {{ row.name.slice(0, 50) }}... </span>
+    </ng-template>
+  </ngx-datatable-column>
+  <ngx-datatable-column name="💰 Price" prop="price"></ngx-datatable-column>
+  <ngx-datatable-column name="📦 Stock" prop="stock"> </ngx-datatable-column>
+  <ngx-datatable-column name="⭐ Rate" prop="avaragarate">
+    <ng-template let-row="row" ngx-datatable-cell-template>
+      <span *ngIf="row.avaragarate > 0">
+        ⭐ {{ row.avaragarate.toFixed(1) }}/5
+      </span>
+      <span *ngIf="row.avaragarate === 0">🚫Not Rated</span>
+    </ng-template>
+  </ngx-datatable-column>
+
+  <ngx-datatable-column name="🖼️ Image">
+    <ng-template let-row="row" prop="mainImage" ngx-datatable-cell-template>
+      <img
+        [src]="Ip + '/Images/' + row.mainImage"
+        alt="Product Image"
+        width="50"
+        height="50"
+      />
+    </ng-template>
+  </ngx-datatable-column>
+
+  <!-- 🔍 عمود زر التفاصيل -->
+  <ngx-datatable-column name="🔍 Details">
+    <ng-template let-row="row" ngx-datatable-cell-template>
+      <button class="details-btn" (click)="viewProductDetails(row)">
+        📄 Details
+      </button>
+    </ng-template>
+  </ngx-datatable-column>
+  <ngx-datatable-column name=" Delete">
+    <ng-template let-row="row" ngx-datatable-cell-template>
+      <button class="Delete-btn" (click)="DeleteProduct(row)">
+        <i class="fas fa-trash-alt"></i>
+        Delete
+      </button>
+    </ng-template>
+  </ngx-datatable-column>
+</ngx-datatable>
+
+<div *ngIf="products.length === 0" class="no-results">
+  <i class="fas fa-search"></i>
+  <h4>No Results Found</h4>
+  <p>There are no products matching the specified search criteria.</p>
+</div>

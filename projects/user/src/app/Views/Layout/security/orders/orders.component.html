@@ -1,0 +1,93 @@
+<div class="container">
+  <div class="main-content">
+    <div class="header"></div>
+    @for (order of OrdersUser ; track order.orderID) {
+    <div class="card">
+      <div class="card-header">
+        <h2>Order</h2>
+      </div>
+      <table class="order-table">
+        <thead>
+          <tr>
+            <th>Products</th>
+            <th>Price</th>
+            <th>Quantity</th>
+            <th>Total</th>
+          </tr>
+        </thead>
+        <tbody>
+          @for (orderItems of order.orderItems ; track orderItems.productID) {
+          <tr>
+            <td>
+              <div class="product">
+                <img
+                  (click)="goToProduct(orderItems.productID)"
+                  [lazyLoad]="Ip + '/images/' + orderItems.imagesDto"
+                  [defaultImage]="'Loding.svg'"
+                  alt="Oneplus 10"
+                />
+                <div class="details">
+                  <h3>{{ orderItems.name }}</h3>
+                </div>
+              </div>
+            </td>
+            <td>EGP {{ orderItems.price / orderItems.quantity }}</td>
+            <td>{{ orderItems.quantity }}</td>
+            <td>EGP {{ orderItems.price }}</td>
+          </tr>
+          }
+        </tbody>
+      </table>
+
+      <div class="totals">
+        <div class="total-row">
+          <span>Subtotal:</span>
+          <span>EGP {{ order.totalAmount }}</span>
+        </div>
+        <div class="total-row">
+          <span>Discount:</span>
+          <span>EGP 0</span>
+        </div>
+        <div class="total-row">
+          <span>Tax:</span>
+          <span>EGP 0</span>
+        </div>
+        <div class="total-row final">
+          <span>Total:</span>
+          <span>EGP {{ order.totalAmount }}</span>
+        </div>
+      </div>
+      <div class="card-header">
+        <h2></h2>
+        <button
+          (click)="ShowDetails(order, '300ms', '150ms')"
+          class="btn btn-primary"
+        >
+          Details
+        </button>
+      </div>
+    </div>
+    }
+  </div>
+  <!-- <div class="sidebar">
+    <div class="header"></div>
+    <div class="card customer-info">
+      <div class="card-header">
+        <h2>Customer Details</h2>
+        <a href="#" class="edit-link">Edit</a>
+      </div>
+      <div class="customer-header">
+        <img [src]="userInfo.picture" alt="" class="avatar" />
+        <div class="details">
+          <h3>{{ userInfo.name }}</h3>
+          <p>Customer Number: #{{ userInfo.id }}</p>
+        </div>
+      </div>
+      <div class="orders-badge">{{ OrdersUser.length }} Orders</div>
+      <div class="contact-info">
+        <p>Email: {{ userInfo.email }}</p>
+        <p>Mobile: {{ userInfo.phoneNumberDtos[0].phoneNumber }}</p>
+      </div>
+    </div>
+  </div> -->
+</div>

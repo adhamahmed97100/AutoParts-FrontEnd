@@ -1,0 +1,58 @@
+<div id="popupOverlay" class="overlay-container mt-5">
+  <div class="popup-box">
+    <h2 mat-dialog-title>Select Phone Number</h2>
+    <mat-dialog-content>
+      <h3>📞 Saved Numbers</h3>
+      <div class="phone-list">
+        @for (phone of savedPhones; track phone.id) {
+        <div class="phone-item">
+          <mat-checkbox
+            [checked]="selectedPhone === phone.id"
+            (change)="selectPhone(phone.id)"
+          >
+            {{ phone.phoneNumber }}
+          </mat-checkbox>
+        </div>
+        }
+      </div>
+
+      <hr />
+
+      <!-- زر الإضافة -->
+      <div class="new-phone-section">
+        <button
+          mat-icon-button
+          color="primary"
+          (click)="showPhoneInput = !showPhoneInput"
+        >
+          <mat-icon>add</mat-icon>
+        </button>
+        <span>Add New Number</span>
+      </div>
+
+      <!-- إدخال الرقم الجديد مع تأثير توسع وتلاشي -->
+      @if (showPhoneInput) {
+      <div @expandFade class="input-container mt-2">
+        <mat-form-field appearance="outline" class="w-100">
+          <mat-label>Enter New Phone</mat-label>
+          <input matInput [(ngModel)]="newPhoneNumber" />
+        </mat-form-field>
+        <button mat-button color="primary" (click)="addNewPhone()">Save</button>
+      </div>
+      }
+
+      <mat-dialog-actions class="mt-3">
+        <button mat-button mat-dialog-close>Close</button>
+        <button
+          mat-button
+          color="accent"
+          class="ms-auto"
+          [disabled]="!selectedPhone"
+          (click)="submitPhone()"
+        >
+          ✅ Submit
+        </button>
+      </mat-dialog-actions>
+    </mat-dialog-content>
+  </div>
+</div>

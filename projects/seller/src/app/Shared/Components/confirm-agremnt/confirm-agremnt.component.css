@@ -1,0 +1,93 @@
+::ng-deep .mat-mdc-dialog-container {
+  border-radius: 50px !important;
+}
+
+::ng-deep .mat-mdc-dialog-surface {
+  border-radius: 50px !important;
+}
+
+.agreement-container {
+  padding: 20px;
+  max-width: 700px;
+  margin: 0 auto;
+}
+
+.agreement-title {
+  color: #2c3e50;
+  font-size: 24px;
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+.agreement-content {
+  max-height: 70vh;
+  overflow-y: auto;
+}
+
+.agreement-section {
+  margin-bottom: 24px;
+  padding: 16px;
+  background-color: #f8f9fa;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+}
+
+.section-title {
+  color: #2c3e50;
+  font-size: 18px;
+  margin-bottom: 12px;
+  font-weight: 600;
+}
+
+.section-text {
+  color: #34495e;
+  line-height: 1.6;
+}
+
+.section-content {
+  padding: 8px 0;
+}
+
+.feature-list,
+.warning-list {
+  list-style: none;
+  padding: 0;
+  margin: 12px 0;
+}
+
+.feature-list li,
+.warning-list li {
+  display: flex;
+  align-items: center;
+  margin-bottom: 8px;
+  color: #34495e;
+}
+
+.feature-list mat-icon {
+  color: #27ae60;
+  margin-right: 8px;
+}
+
+.warning-list mat-icon {
+  color: #e74c3c;
+  margin-right: 8px;
+}
+
+.dialog-actions {
+  padding: 16px 0;
+  margin-top: 16px;
+  border-top: 1px solid #eee;
+}
+
+.cancel-button {
+  margin-right: 8px;
+}
+
+.accept-button mat-button {
+  background-color: #002a47;
+  color: white;
+}
+
+.accept-button:hover {
+  background-color: #04395e !important;
+}

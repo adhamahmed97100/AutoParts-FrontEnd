@@ -1,0 +1,222 @@
+.product-reviews {
+  margin-top: 30px;
+}
+.product-reviews h5 {
+  font-size: 18px;
+  color: #2874f0;
+}
+.product-reviews .reviews-list {
+  margin-top: 15px;
+}
+.product-reviews .review-item {
+  padding: 15px;
+  border-radius: 5px;
+  box-shadow: 0 0.125rem 0.25rem rgb(0 0 0 / 10%);
+  margin-bottom: 20px;
+}
+.product-reviews .review-item .d-flex {
+  justify-content: space-between;
+}
+.product-reviews .review-item .review-author {
+  font-size: 16px;
+  font-weight: 600;
+}
+.product-reviews .review-item .review-rating {
+  font-size: 14px;
+  color: #f39c12;
+}
+.product-reviews .review-item p {
+  margin-top: 10px;
+  font-size: 14px;
+  color: #555;
+}
+.product-reviews .add-review {
+  margin-top: 30px;
+}
+.product-reviews .add-review .form-group {
+  margin-bottom: 15px;
+}
+.product-reviews .add-review textarea {
+  resize: none;
+}
+
+.btn-cart {
+  background-color: #264e7e;
+  color: #fff;
+  transition: background-color 0.3s ease;
+}
+.btn-cart:hover {
+  background-color: #213a59;
+}
+.title {
+  font-size: 24px;
+  font-weight: bold;
+  text-transform: uppercase;
+  color: #1f4c7a; /* لون مشابه للصورة */
+  text-align: center;
+  letter-spacing: 1px;
+  font-family: "Arial", sans-serif;
+}
+/* Product View */
+.product-view .product-name {
+  font-size: 24px;
+  color: #2874f0;
+}
+.product-view .product-name .label-stock {
+  font-size: 13px;
+  padding: 4px 13px;
+  border-radius: 5px;
+  color: #fff;
+  box-shadow: 0 0.125rem 0.25rem rgb(0 0 0 / 8%);
+  float: right;
+}
+.product-view .product-path {
+  font-size: 13px;
+  font-weight: 500;
+  color: #252525;
+  margin-bottom: 16px;
+}
+.product-view .selling-price {
+  font-size: 26px;
+  color: #000;
+  font-weight: 600;
+  margin-right: 8px;
+}
+.product-view .original-price {
+  font-size: 18px;
+  color: #937979;
+  font-weight: 400;
+  text-decoration: line-through;
+}
+.product-view .btn1 {
+  border: 1px solid;
+  margin-right: 3px;
+  border-radius: 0px;
+  font-size: 14px;
+  margin-top: 10px;
+}
+.product-view .btn1:hover {
+  background-color: #2874f0;
+  color: #fff;
+}
+.product-view .input-quantity {
+  border: 1px solid #000;
+  margin-right: 3px;
+  font-size: 12px;
+  margin-top: 10px;
+  width: 58px;
+  outline: none;
+  text-align: center;
+}
+
+.product-image {
+  width: 100%;
+  height: 400px;
+  object-fit: contain;
+
+  border-radius: 10px;
+  display: block;
+}
+
+.skeleton-loader {
+  width: 100%;
+  height: 400px;
+  background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+  background-size: 200% 100%;
+  animation: loading 1.5s infinite;
+  border-radius: 10px;
+}
+
+@keyframes loading {
+  0% {
+    background-position: 200% 0;
+  }
+  100% {
+    background-position: -200% 0;
+  }
+}
+
+.product-image-container {
+  position: relative;
+  width: 100%;
+  height: 400px;
+}
+
+.thumbnails-container {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  margin-top: 10px;
+}
+
+.thumbnail {
+  width: 80px;
+  max-width: 150px;
+  height: auto;
+  object-fit: cover;
+  cursor: pointer;
+  opacity: 0.6;
+  transition: opacity 0.3s ease;
+}
+
+.thumbnail:hover,
+.thumbnail.active {
+  opacity: 1;
+}
+
+.description span {
+  white-space: pre-wrap;
+  word-break: break-word;
+  width: 10px;
+}
+::ng-deep .ngx-pagination .current {
+  padding: 8px 14px;
+  background: #264e7e !important;
+  border-radius: 10px;
+  color: #fefefe;
+  cursor: default;
+}
+/* Modern Rounded Pagination Theme */
+::ng-deep .ngx-pagination {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  padding: 15px;
+  gap: 8px;
+  font-family: "Segoe UI", sans-serif;
+}
+
+::ng-deep.ngx-pagination li {
+  list-style: none;
+}
+
+::ng-deep.ngx-pagination li a,
+.ngx-pagination li span {
+  padding: 8px 14px;
+  border-radius: 10px;
+  border: none;
+  background-color: #f1f3f5;
+  color: #333;
+  text-decoration: none;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+  transition: all 0.3s ease-in-out;
+  cursor: pointer;
+}
+
+::ng-deep.ngx-pagination li a:hover {
+  background-color: #264e7e;
+  color: white;
+  transform: translateY(-2px);
+}
+
+::ng-deep.ngx-pagination .disabled a,
+.ngx-pagination .disabled span {
+  background-color: #e9ecef;
+  color: #adb5bd;
+  cursor: not-allowed;
+  pointer-events: none;
+}
+html {
+  scroll-behavior: smooth !important;
+}

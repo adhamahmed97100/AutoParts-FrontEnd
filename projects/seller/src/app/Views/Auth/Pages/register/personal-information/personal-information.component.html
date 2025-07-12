@@ -1,0 +1,106 @@
+<div class="form-container" [@slideInOut]>
+  <h1 class="form-title">Personal Information</h1>
+  <p class="form-subtitle">Setup your password and provide your phone number</p>
+
+  <form [formGroup]="personalForm" (ngSubmit)="onSubmit()">
+    <div class="phone-field">
+      <div class="row">
+        <div class="col">
+          <div class="form-field">
+            <label>First Name <span class="required">*</span></label>
+            <div class="password-input">
+              <input type="text" formControlName="firstName" />
+            </div>
+          </div>
+        </div>
+        <div class="col">
+          <div class="form-field">
+            <label>Last Name <span class="required">*</span></label>
+            <div class="password-input">
+              <input type="text" formControlName="lastName" />
+            </div>
+          </div>
+        </div>
+      </div>
+      <label>Phone number <span class="required">*</span></label>
+      <div class="phone-input">
+        <div class="country-code">
+          <select formControlName="countryCode">
+            <option value="+20">+20</option>
+            <option value="+234">+234</option>
+            <option value="+254">+254</option>
+            <option value="+212">+212</option>
+            <option value="+225">+225</option>
+            <option value="+233">+233</option>
+            <option value="+213">+213</option>
+            <option value="+216">+216</option>
+            <option value="+221">+221</option>
+          </select>
+        </div>
+        <input
+          type="tel"
+          formControlName="phoneNumber"
+          placeholder="1234567890"
+          autocomplete="new-password"
+        />
+      </div>
+    </div>
+
+    <div class="form-field">
+      <label>Password <span class="required">*</span></label>
+      <div class="password-input">
+        <input
+          [type]="showPassword ? 'text' : 'password'"
+          formControlName="password"
+          autocomplete="new-password"
+        />
+        <button
+          type="button"
+          class="toggle-password"
+          (click)="togglePassword()"
+        >
+          @if(!showPassword){
+          <span>👁️</span>
+          }@else {
+          <span>🔒</span>
+          }
+        </button>
+      </div>
+    </div>
+
+    <div class="form-field">
+      <label>Confirm Password <span class="required">*</span></label>
+      <div class="password-input">
+        <input
+          [type]="showConfirmPassword ? 'text' : 'password'"
+          formControlName="confirmPassword"
+          autocomplete="new-password"
+        />
+        <button
+          type="button"
+          class="toggle-password"
+          (click)="toggleConfirmPassword()"
+        >
+          @if(!showConfirmPassword){
+          <span>👁️</span>
+          }@else {
+          <span>🔒</span>
+          }
+        </button>
+      </div>
+    </div>
+
+    <p class="password-hint">
+      Password should contain at least 8 characters containing a capital letter,
+      a lower letter, a number and a special character
+    </p>
+
+    <button
+      type="submit"
+      class="submit-button"
+      [disabled]="personalForm.invalid"
+    >
+      NEXT
+    </button>
+  </form>
+</div>

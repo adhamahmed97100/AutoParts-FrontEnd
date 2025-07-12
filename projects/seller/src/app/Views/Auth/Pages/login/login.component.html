@@ -1,0 +1,114 @@
+<link
+  rel="stylesheet"
+  href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.2/font/bootstrap-icons.css"
+/>
+
+<div class="container">
+  <div class="row justify-content-center align-items-center mt-5">
+    <div class="row">
+      <!-- الصورة -->
+      <div class="col-md-6 p-0">
+        <img
+          src="login.jpg"
+          alt="Login image"
+          class="img-fluid h-100 w-100"
+          style="object-fit: cover"
+        />
+      </div>
+
+      <!-- الفورم -->
+      <div class="col-md-6 bg-white p-4">
+        <div class="form-container">
+          <img src="Logo/1.svg" alt="Company Logo" class="logo" />
+          <h3 class="form-subtitle">Login</h3>
+
+          <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+            <div class="mb-3 w-100">
+              <label for="email" class="form-label">Email address</label>
+              <input
+                formControlName="email"
+                type="email"
+                class="form-control"
+                id="email"
+                placeholder="Enter your email"
+              />
+              <div
+                *ngIf="
+                  loginForm.get('email')?.invalid &&
+                  loginForm.get('email')?.touched
+                "
+                class="text-danger"
+              >
+                Please enter a valid email.
+              </div>
+            </div>
+
+            <!-- حقل الباسورد مع الأيقونة -->
+            <div class="mb-3 position-relative">
+              <label for="password" class="form-label">Password</label>
+              <input
+                [type]="showPassword ? 'text' : 'password'"
+                formControlName="password"
+                class="form-control"
+                id="password"
+                placeholder="Enter your password"
+              />
+              <i
+                class="bi"
+                [ngClass]="showPassword ? 'bi-eye-slash' : 'bi-eye'"
+                (click)="togglePasswordVisibility()"
+                style="
+                  position: absolute;
+                  top: 38px;
+                  right: 15px;
+                  cursor: pointer;
+                "
+              ></i>
+              <div
+                *ngIf="
+                  loginForm.get('password')?.invalid &&
+                  loginForm.get('password')?.touched
+                "
+                class="text-danger mt-1"
+              >
+                Password is required.
+              </div>
+            </div>
+
+            <div class="mb-3 form-check">
+              <input type="checkbox" class="form-check-input" id="rememberMe" />
+              <label class="form-check-label" for="rememberMe"
+                >Remember me</label
+              >
+            </div>
+
+            <div class="d-grid">
+              <button
+                type="submit"
+                class="btn btn-primary"
+                [disabled]="loading"
+              >
+                {{ loading ? "Logging in..." : "Login" }}
+              </button>
+            </div>
+
+            <div *ngIf="errorMessage" class="text-danger text-center mt-2">
+              {{ errorMessage }}
+            </div>
+          </form>
+
+          <div class="text-center mt-3">
+            <a href="#" class="text-decoration-none">Forgot password?</a>
+          </div>
+
+          <hr />
+
+          <p class="register-text">
+            Don't have account?
+            <a class="register-link" routerLink="/Auth/register">Register</a>
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

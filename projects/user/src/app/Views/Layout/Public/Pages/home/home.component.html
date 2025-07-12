@@ -1,0 +1,30 @@
+<app-advertising id="Home"></app-advertising>
+<div class="Wrapper">
+  <div
+    id="categories"
+    class="animate-section"
+    style="position: relative; z-index: 999"
+  >
+    <app-car-parts-selector
+      (CategorysEvent)="handleCategorys($event)"
+    ></app-car-parts-selector>
+  </div>
+  <div
+    id="offers"
+    class="animate-section"
+    style="position: relative; z-index: 998"
+  >
+    <app-slider-adv
+      [CarBrands]="brands"
+      [Categorys]="category"
+    ></app-slider-adv>
+  </div>
+  <div id="brandcar" class="animate-section">
+    <app-brand-car (CarBrandsEvent)="handleCarBrands($event)"></app-brand-car>
+  </div>
+
+  <div id="featured" class="animate-section">
+    <app-product-cards></app-product-cards>
+  </div>
+  <app-info></app-info>
+</div>

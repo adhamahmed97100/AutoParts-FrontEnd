@@ -1,0 +1,90 @@
+<div class="form-container" [@slideInOut]>
+  <h1 class="form-title">Shop Information</h1>
+  <p class="form-subtitle">
+    Setup your shop by completing the following details
+  </p>
+
+  <form [formGroup]="shopForm" (ngSubmit)="onSubmit()">
+    <div class="account-type">
+      <label>Account type <span class="info-icon">i</span></label>
+      <div class="account-options">
+        <div
+          class="option"
+          [class]="{
+            selected: shopForm.get('accountType')?.value === 'business'
+          }"
+          (click)="selectAccountType('business')"
+        >
+          <span class="icon">🏢</span>
+          <span class="label">Business</span>
+          <span class="radio-button"></span>
+        </div>
+        <div
+          class="option"
+          [class]="{
+            selected: shopForm.get('accountType')?.value === 'individual'
+          }"
+          (click)="selectAccountType('individual')"
+        >
+          <span class="icon">👤</span>
+          <span class="label">Individual</span>
+          <span class="radio-button"></span>
+        </div>
+      </div>
+    </div>
+
+    <div class="form-field">
+      <label>Shop name <span class="required">*</span></label>
+      <input type="text" formControlName="shopName" placeholder="S" />
+      <span class="info-icon">i</span>
+      @if( shopForm.get('shopName')?.invalid &&
+      shopForm.get('shopName')?.touched ){
+      <span class="error-message"> Shop name is required </span>
+      }
+    </div>
+
+    <div class="form-field">
+      <label
+        >How did you hear about E-Comerce?
+        <span class="required">*</span></label
+      >
+      <div class="dropdown">
+        <select formControlName="referralSource">
+          <option value="" disabled selected>Select an option</option>
+          <option value="social">Social Media</option>
+          <option value="friend">Friend</option>
+          <option value="ad">Advertisement</option>
+          <option value="other">Other</option>
+        </select>
+        <span class="dropdown-arrow">▼</span>
+      </div>
+      @if( shopForm.get('referralSource')?.invalid &&
+      shopForm.get('referralSource')?.touched ){
+      <span class="error-message"> This field is required </span>
+      }
+    </div>
+
+    <div class="checkbox-group">
+      <div class="checkbox">
+        <input type="checkbox" id="terms" formControlName="termsAccepted" />
+        <label for="terms"
+          >I hereby confirm that I have read and I agree to the
+          <a href="#">E-Comerce seller contract</a>,
+          <a href="#">E-Comerce codes, policies and guidelines</a> and
+          <a href="#">Privacy Notice</a> and
+          <a href="#">Cookie Notice</a> referenced therein.</label
+        >
+      </div>
+      @if( shopForm.get('termsAccepted')?.invalid &&
+      shopForm.get('termsAccepted')?.touched ){
+      <span class="error-message">
+        You must accept the terms and conditions</span
+      >
+      }
+    </div>
+
+    <button type="submit" class="submit-button" [disabled]="shopForm.invalid">
+      SUBMIT
+    </button>
+  </form>
+</div>

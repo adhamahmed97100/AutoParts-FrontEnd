@@ -1,0 +1,314 @@
+<div class="product-form-container">
+  <div class="header">
+    <h1>Details Product</h1>
+    <p>Online product across your store</p>
+    <div class="actions">
+      <button
+        type="submit"
+        [disabled]="IsUpdate()"
+        (click)="UpdateProduct()"
+        class="btn-primary"
+      >
+        Update product
+      </button>
+    </div>
+  </div>
+
+  <form [formGroup]="productForm">
+    <div class="form-layout">
+      <div class="main-column">
+        <div class="card">
+          <h2>Product information</h2>
+
+          <div class="form-group">
+            <label for="name">Name</label>
+            <textarea
+              type="text"
+              id="name"
+              formControlName="name"
+              placeholder="Product title"
+            >
+            </textarea>
+          </div>
+
+          <div class="form-group">
+            <label for="description">Description</label>
+            <div class="text-editor-toolbar"></div>
+            <quill-editor
+              id="description"
+              class="w-100"
+              style="height: 200px"
+              formControlName="description"
+              placeholder="Product Description"
+              [modules]="editorConfig"
+            ></quill-editor>
+          </div>
+        </div>
+
+        <div class="card">
+          <h2>Product Images Main</h2>
+          <div class="image-upload-area">
+            <div
+              class="dropzone"
+              (dragover)="onDragOverMain($event)"
+              (dragleave)="onDragLeaveMain($event)"
+              (drop)="onDropMain($event)"
+              (click)="browseImageMain()"
+              [class]="{ 'drag-over': isDragOver }"
+            >
+              @if(MainImagePreviews.image!=""){
+              <div class="image-preview-Main">
+                <div class="preview-item">
+                  <img [src]="MainImagePreviews.image" alt="Uploaded Image" />
+                  <button
+                    type="button"
+                    class="delete-btn"
+                    (click)="removeMain()"
+                  >
+                    X
+                  </button>
+                </div>
+              </div>
+              } @else {
+
+              <div class="upload-icon">
+                <i class="fa fa-cloud-upload"></i>
+              </div>
+              <p>Drag and drop your images here</p>
+              <button type="button" class="btn-browse">Browse images</button>
+              }
+            </div>
+
+            <input
+              type="file"
+              #fileInput
+              (change)="onFileSelectMain($event)"
+              accept="image/*"
+              multiple
+              hidden
+            />
+          </div>
+        </div>
+
+        <div class="card">
+          <h2>Product Images</h2>
+          <div class="image-upload-area">
+            <div
+              class="dropzone"
+              (dragover)="onDragOver($event)"
+              (dragleave)="onDragLeave($event)"
+              (drop)="onDrop($event)"
+              (click)="browseImage()"
+              [class]="{ 'drag-over': isDragOver }"
+            >
+              @if(imagePreviews.length > 0){
+              <div class="image-preview">
+                @for(img of imagePreviews; track img.id){
+                <div class="preview-item">
+                  <img [src]="img.image" alt="Uploaded Image" />
+                  <button
+                    type="button"
+                    class="delete-btn"
+                    (click)="removeImage(img.image, imagePreviews.indexOf(img))"
+                  >
+                    X
+                  </button>
+                </div>
+                }
+              </div>
+              } @else {
+
+              <div class="upload-icon">
+                <i class="fa fa-cloud-upload"></i>
+              </div>
+              <p>Drag and drop your images here</p>
+              <button type="button" class="btn-browse">Browse images</button>
+              }
+            </div>
+
+            <!-- زر رفع الصور عبر المتصفح -->
+            <input
+              type="file"
+              #fileInput
+              (change)="onFileSelect($event)"
+              accept="image/*"
+              multiple
+              hidden
+            />
+          </div>
+        </div>
+
+        <div class="card">
+          <h2 class="section-title">Technical Specifications</h2>
+          <div class="specifications-container">
+            @for (Model of product?.modelCompatibilityDto; track Model.id) {
+            <div class="spec-row">
+              <input
+                type="text"
+                class="form-control"
+                disabled
+                value="{{ Model.brandName }} - {{ Model.modelName }}"
+              />
+              <input
+                type="text"
+                class="form-control"
+                disabled
+                value="{{ Model.min }} - {{ Model.max }}"
+              />
+            </div>
+            }
+          </div>
+        </div>
+      </div>
+
+      <!-- Right column -->
+      <div class="side-column">
+        <!-- Pricing Section -->
+        <div class="card">
+          <h2>Pricing</h2>
+
+          <div class="form-group">
+            <label for="basePrice">Base Price</label>
+            <input
+              type="text"
+              id="basePrice"
+              formControlName="basePrice"
+              placeholder="Price"
+            />
+          </div>
+
+          <div class="form-group">
+            <label for="discountedPrice">Discounted Price</label>
+            <input
+              type="text"
+              id="discountedPrice"
+              formControlName="discountedPrice"
+              placeholder="Discounted Price"
+            />
+          </div>
+
+          <div class="form-toggle">
+            <label>In stock</label>
+            <div class="toggle-switch">
+              <input type="checkbox" id="inStock" formControlName="inStock" />
+              <label for="inStock" class="toggle-label"></label>
+            </div>
+          </div>
+        </div>
+
+        <!-- Organize Section -->
+
+        <div class="card">
+          <h2>Organize</h2>
+
+          <div class="form-group">
+            <label for="basePrice">Category</label>
+            <div class="input-container">
+              <input
+                type="text"
+                id="basePrice"
+                class="custom-input"
+                value="{{ product?.category?.name }}"
+                placeholder="Price"
+                readonly
+              />
+            </div>
+          </div>
+
+          @if(IsUpdateCategory){
+          <div class="form-group">
+            <label for="category">Category</label>
+            <select id="category">
+              <option value="">-- Select Category --</option>
+              <!-- @for (categorie of categories; track categorie.id) {
+              <ng-container>
+                <option [value]="categorie.id">{{ categorie.name }}</option>
+              </ng-container>
+              } -->
+            </select>
+          </div>
+          @if(subcategories.length > 0){
+          <div class="form-group">
+            <label>SubCategories</label>
+            <ul>
+              <!-- @for (sub of subcategories; track sub.id) {
+              <ng-container>
+                <app-subcategory-item
+                  [subcategory]="sub"
+                  (subCategorySelected)="onSubCategoryChange($event)"
+                ></app-subcategory-item>
+              </ng-container>
+              } -->
+            </ul>
+          </div>
+          }}
+
+          <div class="form-group">
+            <label for="collection">Stock</label>
+            <input
+              type="number"
+              formControlName="Stock"
+              placeholder="Stock"
+              class="form-control"
+            />
+          </div>
+        </div>
+      </div>
+    </div>
+  </form>
+</div>
+
+<app-products-rates [ProductId]="product?.id || ''"></app-products-rates>
+
+<!-- Customer Reviews Section -->
+@if(reviews.length > 0){
+<div class="product-reviews mt-5">
+  <h4 class="mb-4 title border-bottom pb-2">Customer Reviews</h4>
+  <div class="reviews-list">
+    @for (review of reviews | paginate: { id: 'foo', itemsPerPage: pageSize,
+    currentPage: p, totalItems: total }; track review.reviewID) {
+    <div class="review-item p-4 mb-4 rounded shadow-sm bg-white border">
+      <div class="d-flex justify-content-between align-items-center mb-2">
+        <div class="d-flex align-items-center">
+          <i class="fa-solid fa-user-circle fa-lg me-2 text-secondary"></i>
+          <strong class="text-dark">{{ review.user.name }}</strong>
+        </div>
+        <div class="review-rating">
+          @for (rate of [1, 2, 3, 4, 5]; track rate) {
+          <i
+            class="fa-solid"
+            [class]="{
+              'fa-star': rate <= review.rating,
+              'fa-star-o': rate > review.rating
+            }"
+            aria-hidden="true"
+          ></i>
+          }
+        </div>
+      </div>
+      <p class="mb-2 text-secondary fst-italic">"{{ review.comment }}"</p>
+      <span class="time text-muted small">
+        <i class="fa-regular fa-clock me-1"></i>{{ review.reviewDate }}
+      </span>
+    </div>
+    }
+  </div>
+
+  <pagination-controls
+    id="foo"
+    (pageChange)="pageChanged($event)"
+    (pageBoundsCorrection)="pageChanged($event)"
+    previousLabel="Previous"
+    nextLabel="Next"
+    screenReaderPaginationLabel="Pagination"
+    screenReaderPageLabel="page"
+    screenReaderCurrentLabel="You're on page"
+  >
+  </pagination-controls>
+</div>
+
+}@else {
+<div class="product-reviews mt-4">
+  <h5>No Reviews</h5>
+</div>
+}

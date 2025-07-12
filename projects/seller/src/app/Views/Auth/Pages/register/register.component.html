@@ -1,0 +1,60 @@
+<div class="main-container">
+  <div class="language-selector">
+    <span class="icon">🌐</span>
+    <select>
+      <option>English</option>
+      <option>العربية</option>
+    </select>
+  </div>
+  <div class="left-panel">
+    <div class="store-illustration">
+      <img src="E-comerce.svg" alt="" />
+    </div>
+    <div class="progress-bar">
+      <div
+        class="progress-step"
+        (click)="currentStep >= 1 ? (currentStep = 1) : currentStep"
+        [class.active]="currentStep > 1"
+        [class.Pointer]="currentStep > 1"
+      ></div>
+      <div
+        class="progress-step"
+        (click)="currentStep >= 2 ? (currentStep = 2) : currentStep"
+        [class.active]="currentStep > 2"
+        [class.Pointer]="currentStep > 2"
+      ></div>
+      <div
+        class="progress-step"
+        (click)="currentStep >= 3 ? (currentStep = 3) : currentStep"
+        [class.active]="currentStep > 3"
+        [class.Pointer]="currentStep > 3"
+      ></div>
+      <div
+        class="progress-step"
+        (click)="currentStep >= 4 ? (currentStep = 4) : currentStep"
+        [class.active]="currentStep > 4"
+        [class.Pointer]="currentStep > 4"
+      ></div>
+    </div>
+  </div>
+  <div class="right-panel">
+    @switch (currentStep) { @case (1) {
+    <app-country-selection
+      (submitted)="handleFormSubmission($event)"
+    ></app-country-selection>
+    } @case (2) {
+    <app-account-setup
+      (submitted)="handleFormSubmission($event)"
+    ></app-account-setup>
+    } @case (3) {
+    <app-personal-information
+      (submitted)="handleFormSubmission($event)"
+    ></app-personal-information>
+
+    } @case (4) {
+    <app-shop-information
+      (submitted)="completeRegistration()"
+    ></app-shop-information>
+    } }
+  </div>
+</div>

@@ -1,0 +1,289 @@
+/* slider-car-service.component.css */
+:root {
+  --primary-color: #e62017;
+  --secondary-color: #1f4c7a;
+  --dark-color: #000000;
+  --light-color: #ffffff;
+  --bg-light: #f9f9f9;
+}
+
+.car-service-container {
+  display: flex;
+  flex-direction: row;
+  max-width: 1400px;
+  margin: 0 auto;
+  font-family: "Arial", sans-serif;
+  gap: 20px;
+}
+
+/* Left side styles - Banner/Slider */
+.banner-container {
+  flex: 7;
+  border-radius: 10px;
+  overflow: hidden;
+  background-color: var(--dark-color);
+  position: relative;
+}
+
+.image-wrapper {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  width: 100%;
+  height: 100%;
+}
+
+.custom-slide-img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  border-radius: 8px;
+}
+
+.promo-banner {
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(135deg, var(--primary-color) 60%, #000000 40%);
+  color: var(--light-color);
+  position: relative;
+  padding: 20px;
+}
+
+.main-title {
+  font-size: 2.5rem;
+  font-weight: bold;
+  margin-bottom: 10px;
+  text-align: right;
+}
+
+.sub-title {
+  font-size: 1.8rem;
+  font-weight: bold;
+  margin-bottom: 20px;
+  text-align: right;
+}
+
+.service-list {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  margin-top: 30px;
+}
+
+.service-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.check-icon {
+  background-color: var(--light-color);
+  color: var(--primary-color);
+  border-radius: 50%;
+  width: 24px;
+  height: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.service-name {
+  font-size: 1.2rem;
+}
+
+.discount-badge {
+  background-color: var(--primary-color);
+  color: var(--light-color);
+  border: 2px solid var(--light-color);
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+  font-size: 1.2rem;
+}
+
+.calendar-clock {
+  position: absolute;
+  bottom: 20px;
+  left: 20px;
+  display: flex;
+  gap: 10px;
+}
+
+/* Right side styles - Service Panel */
+.service-panel {
+  flex: 5;
+  background-color: var(--light-color);
+  border-radius: 10px;
+  padding: 15px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.service-tabs {
+  display: flex;
+  border-bottom: 1px solid #e0e0e0;
+}
+
+.tab {
+  flex: 1;
+  padding: 10px;
+  text-align: center;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.tab.active {
+  border-bottom: 2px solid var(--primary-color);
+  color: var(--primary-color);
+}
+
+.tab-icon {
+  font-size: 1.5rem;
+  margin-bottom: 5px;
+}
+
+.tab-text {
+  font-size: 18px;
+  font-weight: 700;
+  color: #1f4c7a;
+}
+
+.tab-description {
+  font-size: 0.8rem;
+  color: #888;
+}
+
+.car-selection {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.selection-item {
+  width: 100%;
+}
+
+.dropdown-btn {
+  width: 100%;
+  padding: 12px 15px;
+  border: 1px solid #e0e0e0;
+  border-radius: 8px;
+  background-color: var(--light-color);
+  text-align: left;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.dropdown-btn:hover {
+  border-color: var(--secondary-color);
+}
+
+.action-btn {
+  background-color: #264e7e;
+  color: #ffffff;
+  border: none;
+  border-radius: 8px;
+  padding: 15px;
+  font-size: 1.1rem;
+  font-weight: bold;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  margin-top: 10px;
+}
+
+.action-btn:hover {
+  background-color: #1b3d5f;
+  color: #fff;
+}
+
+/* Swiper custom styles */
+swiper-container {
+  width: 100%;
+  height: 450px;
+  overflow: hidden;
+}
+
+swiper-container::part(button-next),
+swiper-container::part(button-prev) {
+  color: var(--secondary-color) !important;
+}
+
+swiper-slide {
+  display: flex;
+  background-color: var(--bg-light);
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .car-service-container {
+    flex-direction: column;
+  }
+
+  .banner-container,
+  .service-panel {
+    width: 100%;
+  }
+
+  swiper-container {
+    height: 350px;
+  }
+}
+/* General styling */
+.car-selection {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  width: 100%;
+}
+
+.selection-item {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+ng-select {
+  width: 100%;
+  border-radius: 8px;
+  padding: 10px;
+  font-size: 14px;
+  background-color: #f9f9f9;
+  box-shadow: 0 1px 1px rgba(0, 0, 0, 0.1);
+}
+
+ng-select .ng-select-container {
+  padding: 5px 10px;
+  border-radius: 8px;
+}
+
+ng-select .ng-select-container .ng-placeholder {
+  color: #bbb;
+  font-size: 14px;
+}
+
+ng-select .ng-arrow-wrapper {
+  color: #555;
+}
+::ng-deep .ng-option-disabled.ng-optgroup.ng-star-inserted {
+  color: #1b3d5f !important;
+  font-size: 16px !important; /* حجم الخط */
+  font-family: "Arial", sans-serif !important; /* نوع الخط */
+  font-weight: bold !important  ; /* جعل الخط عريض */
+  padding-left: 20px !important; /* إضافة مسافة من اليسار */
+}
+.brand-logo {
+  width: 25px;
+  height: 25px;
+  margin-right: 8px;
+  border-radius: 50%;
+}

@@ -1,0 +1,55 @@
+<div class="container parts-mega-menu">
+  <h2 class="title">CAR PARTS: MOST POPULAR WITH USERS</h2>
+
+  <div class="categories-container mb-5">
+    <div class="row">
+      @for ( category of categorys ; track category.categoryID) {
+      <div
+        class="col-md-2 col-sm-4 col-6"
+        (click)="showMegaMenu(category, $event)"
+      >
+        <div
+          class="category-card text-center"
+          [ngClass]="{ active: category === selectedCategory }"
+        >
+          <img
+            class="category-icon img-fluid"
+            [lazyLoad]="IP + '/Images/Category/' + category.image"
+            [defaultImage]="'Loding.svg'"
+            [alt]="category.name"
+          />
+          <span>{{ category.name }}</span>
+        </div>
+      </div>
+      }
+    </div>
+
+    @if(selectedCategory){
+    <div class="mega-menu animate-slide-down">
+      <div class="row">
+        @if(selectedCategory.subCategories){
+        <ng-container>
+          @for ( item of getFlattenedItems(selectedCategory.subCategories)
+          ;track item.categoryID) {
+
+          <div class="mega-menu-column col-md-4">
+            <ul>
+              <li (click)="selectPart(item)">
+                <img
+                  *ngIf="item.image"
+                  [lazyLoad]="IP + '/Images/Category/' + item.image"
+                  [defaultImage]="'Loding.svg'"
+                  [alt]="item.name"
+                />
+                <span>{{ item.name }}</span>
+              </li>
+            </ul>
+          </div>
+          }
+        </ng-container>
+        }
+      </div>
+    </div>
+    }
+  </div>
+</div>

@@ -1,0 +1,58 @@
+<!-- oil-filter-manufacturers.component.html -->
+<div class="wrapper">
+  <div class="oil-filter-page">
+    <div class="content-container">
+      <div class="filter-images">
+        @if(Category?.image){
+        <img
+          [lazyLoad]="IP + '/Images/Category/' + Category.image"
+          [defaultImage]="'Loding.svg'"
+          [alt]="Category.name || 'Category Image'"
+          class="filter-illustration"
+        />
+        }@else {
+        <img
+          [lazyLoad]="IP + '/Images/CarBrand/' + Brand.image"
+          [defaultImage]="'Loding.svg'"
+          [alt]="Brand.name || 'Brand Image'"
+          class="filter-illustration"
+          style="width: 100%; height: 200px"
+        />
+        }
+      </div>
+
+      <div class="manufacturers-section">
+        @if(Category?.name){
+        <h1>{{ Category.name }}</h1>
+        }@else {
+        <h1>{{ Brand.name }}</h1>
+        }
+
+        <div class="manufacturers-carousel">
+          <button class="nav-button prev" (click)="prevSlide()">‹</button>
+
+          <div class="manufacturers-logos">
+            <img
+              *ngFor="let manufacturer of manufacturers"
+              [lazyLoad]="manufacturer.logo"
+              [defaultImage]="'Loding.svg'"
+              [alt]="manufacturer.name"
+              class="manufacturer-logo"
+            />
+          </div>
+
+          <button class="nav-button next" (click)="nextSlide()">›</button>
+        </div>
+
+        <div class="slide-indicators">
+          <span
+            *ngFor="let _ of manufacturers; let i = index"
+            class="indicator"
+            [class.active]="i === currentSlide"
+          ></span>
+        </div>
+      </div>
+    </div>
+  </div>
+  <router-outlet></router-outlet>
+</div>

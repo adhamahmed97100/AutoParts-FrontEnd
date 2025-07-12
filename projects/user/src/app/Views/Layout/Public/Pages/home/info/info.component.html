@@ -1,0 +1,28 @@
+<!-- onlinecarparts.component.html -->
+<div class="cont">
+  <!-- Brand Carousel -->
+  <div class="brand-carousel">
+    <button class="nav-button prev">
+      <i class="material-icons">chevron_left</i>
+    </button>
+    <div class="brands-container">
+      <div *ngFor="let brand of brands" class="brand-item">
+        <img [src]="brand.logo" [alt]="brand.name" />
+      </div>
+    </div>
+    <button class="nav-button next">
+      <i class="material-icons">chevron_right</i>
+    </button>
+  </div>
+
+  <!-- Features Section -->
+  <div class="features-section">
+    <div *ngFor="let feature of features" class="feature-card">
+      <div class="feature-icon">
+        <i class="material-icons">{{ feature.icon }}</i>
+      </div>
+      <h3 class="feature-title">{{ feature.title }}</h3>
+      <p class="feature-description">{{ feature.description }}</p>
+    </div>
+  </div>
+</div>

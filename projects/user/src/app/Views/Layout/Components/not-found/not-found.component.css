@@ -1,0 +1,48 @@
+/* product-request.component.scss */
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+  font-family: Arial, sans-serif;
+}
+
+.title {
+  color: #2e5381;
+  font-size: 28px;
+  margin-bottom: 10px;
+}
+.image-container img {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: auto;
+  width: 50%;
+  height: 50%;
+}
+.subtitle {
+  color: #666;
+  font-size: 18px;
+  margin-bottom: 20px;
+  line-height: 1.5;
+}
+
+.request-button {
+  background-color: #2e5381;
+  color: white;
+  border: none;
+  padding: 15px 30px;
+  font-size: 16px;
+  margin: auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 80%;
+  border-radius: 25px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.request-button:hover {
+  background-color: #1e3c61;
+}

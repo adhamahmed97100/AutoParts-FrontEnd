@@ -1,0 +1,204 @@
+/* 🎨 تحسين تصميم القائمة */
+.parts-mega-menu {
+  padding: 20px;
+
+  border-radius: 10px;
+}
+
+/* 🏁 العنوان */
+.title {
+  font-size: 24px;
+  font-weight: bold;
+  text-transform: uppercase;
+  color: #1f4c7a; /* لون مشابه للصورة */
+  text-align: center;
+  letter-spacing: 1px;
+  font-family: "Arial", sans-serif;
+}
+h2:after {
+  content: "";
+  display: block;
+  width: 60px;
+  height: 3px;
+  background-color: #0088cc;
+  margin: 15px auto 0;
+}
+
+/* 🔹 تصميم فئات القطع */
+.categories-container {
+  position: relative;
+}
+
+.category-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  height: 100%;
+  padding: 10px;
+  cursor: pointer;
+  border-radius: 10px;
+  position: relative;
+  overflow: hidden;
+  transition: all 0.3s ease;
+}
+
+.category-card::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  right: 50%;
+  width: 100%;
+  height: 3px;
+  background-color: #213a59;
+  transform: scaleX(0);
+  transform-origin: center;
+  transition: transform 0.3s ease-in-out;
+}
+
+.category-card:hover::after {
+  transform: scaleX(2);
+}
+
+.category-card.active {
+  transform: translateY(-5px);
+  box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.2);
+}
+.category-card.active::after {
+  transform: scaleX(2);
+  background-color: #213a59;
+}
+
+.category-card:hover {
+  color: rgb(27, 23, 62);
+}
+
+.category-card img {
+  width: 100%;
+  image-rendering: crisp-edges;
+  image-rendering: -webkit-optimize-contrast;
+  filter: contrast(1.1) brightness(1.1);
+  height: auto;
+  margin-bottom: 5px;
+}
+
+/* 🚀 تحسين تصميم الـ Mega Menu */
+.mega-menu {
+  background: #ffffff;
+  border: 1px solid #ddd;
+  padding: 20px;
+  position: absolute;
+  width: 100%;
+  left: 0;
+  z-index: 1000;
+  box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.1);
+  opacity: 0;
+  transform: translateY(-10px);
+  transition: opacity 0.4s ease-in-out, transform 0.4s ease-in-out;
+  border-radius: 10px;
+  max-height: 400px;
+  overflow-y: auto;
+  visibility: hidden;
+}
+
+/* 🚀 تحسين شكل الـ Scroll */
+.mega-menu::-webkit-scrollbar {
+  width: 8px;
+}
+
+.mega-menu::-webkit-scrollbar-track {
+  background: #f1f1f1;
+  border-radius: 10px;
+}
+
+.mega-menu::-webkit-scrollbar-thumb {
+  background: #888;
+  border-radius: 10px;
+}
+
+.mega-menu::-webkit-scrollbar-thumb:hover {
+  background: #555;
+}
+
+/* 🏁 عند ظهور الميجا مينو */
+.mega-menu.animate-slide-down {
+  opacity: 1;
+  transform: translateY(0);
+  visibility: visible;
+  animation: fadeInUp 0.5s ease-in-out;
+}
+
+/* 🎞️ **Animation سلس للظهور** */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(-15px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* 🎯 توزيع الـ Subparts داخل أعمدة */
+.mega-menu .row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.mega-menu-column {
+  flex: 1 1 calc(33.33% - 10px);
+  max-width: calc(33.33% - 10px);
+  padding: 10px;
+}
+
+@media (max-width: 992px) {
+  .mega-menu-column {
+    flex: 1 1 calc(50% - 10px);
+    max-width: calc(50% - 10px);
+  }
+}
+
+@media (max-width: 576px) {
+  .mega-menu-column {
+    flex: 1 1 100%;
+    max-width: 100%;
+  }
+}
+
+/* 🔥 تصميم قائمة القطع الفرعية */
+.mega-menu-column ul {
+  padding: 0;
+  list-style: none;
+}
+
+.mega-menu-column li {
+  display: flex;
+  align-items: center;
+  padding: 8px 12px;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-weight: 500;
+}
+
+.mega-menu-column li:hover {
+  transform: scale(1.05);
+}
+
+.mega-menu-column img {
+  width: 20%;
+  height: auto;
+  margin-right: 10px;
+  image-rendering: crisp-edges;
+  image-rendering: -webkit-optimize-contrast;
+  filter: contrast(1.1) brightness(1.1);
+  border-radius: 5px;
+  background: #ffffff;
+  padding: 5px;
+}
+
+.mega-menu-column li:hover img {
+  background: white;
+}

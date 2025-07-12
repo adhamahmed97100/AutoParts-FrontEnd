@@ -1,0 +1,42 @@
+<div class="container mt-4">
+  <div class="card p-4 shadow-sm">
+    <div class="row align-items-center">
+      <div class="col-md-3 text-center">
+        <img
+          [lazyLoad]="Ip + '/images/Models/' + model.image"
+          [defaultImage]="'Loding.svg'"
+          class="img-fluid"
+          alt="Car Image"
+        />
+      </div>
+
+      <div class="col-md-6">
+        <h3 class="header fw-bold">
+          {{ model.name }}
+          <span class="text-muted"
+            >({{ model.minYear }} -{{ model.maxYear }})</span
+          >
+        </h3>
+        <div class="alert alert-light d-flex align-items-center">
+          <i class="bi bi-clock me-2"></i>
+          <span
+            >Production Year:
+            <strong>({{ model.minYear }} -{{ model.maxYear }})</strong></span
+          >
+        </div>
+      </div>
+
+      <div class="col-md-3 text-center">
+        <img
+          [lazyLoad]="Ip + '/images/CarBrand/' + model.brandImage"
+          [defaultImage]="'Loding.svg'"
+          class="img-fluid"
+          style="max-width: 120px"
+          alt="Skoda Logo"
+        />
+      </div>
+    </div>
+  </div>
+</div>
+
+<app-product-cards [filter]="filter"></app-product-cards>

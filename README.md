@@ -90,7 +90,7 @@ The website provides a seamless digital experience for:
 
 ---
 
-<<<<<<< HEAD
+
 ## 👥 Team Members
 
 This project was developed by a team of 13 students from the MIS Department – Faculty of Business, Alexandria University (Graduation Year: 2025).
@@ -109,6 +109,5 @@ This project was developed by a team of 13 students from the MIS Department – 
 - Ziad Ibrahim Abdel Salam  
 
 ---
-=======
->>>>>>> 2ea04f3 (Add Angular CLI for Vercel deployment)
+
 © 2025 - Adham Ahmed Mouwad

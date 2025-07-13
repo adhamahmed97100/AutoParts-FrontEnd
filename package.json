@@ -4,7 +4,8 @@
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
-  "build": "npx ng build user --configuration production",
+  "build": "./node_modules/.bin/ng build user --configuration production",
+
 
     "watch": "ng build --watch --configuration development",
     "test": "ng test"

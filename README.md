@@ -90,23 +90,23 @@ The website provides a seamless digital experience for:
 
 ---
 
-
 ## 👥 Team Members
 
 This project was developed by a team of 13 students from the MIS Department – Faculty of Business, Alexandria University (Graduation Year: 2025).
+
 - **Adham Ahmed Mouwad** – Front-End Developer
-- Abanoub Samir Said  
-- Eman Abo-rehab Salama  
-- Rahma Mohamed Abdelaziz  
-- Abanob Farhoud Bekhit  
-- Mohamed Hussein Mohamed Abdelhamid  
-- Rewan Ashraf El-sayed  
-- Mina Emad Wahba  
-- Dina Mohamed Khalil  
-- Badaba Gerges Samry Sokar  
-- Sara Khairy Khamis Ali  
-- Ziad Ibrahim Hafez  
-- Ziad Ibrahim Abdel Salam  
+- Abanoub Samir Said
+- Eman Abo-rehab Salama
+- Rahma Mohamed Abdelaziz
+- Abanob Farhoud Bekhit
+- Mohamed Hussein Mohamed Abdelhamid
+- Rewan Ashraf El-sayed
+- Mina Emad Wahba
+- Dina Mohamed Khalil
+- Badaba Gerges Samry Sokar
+- Sara Khairy Khamis Ali
+- Ziad Ibrahim Hafez
+- Ziad Ibrahim Abdel Salam
 
 ---
 

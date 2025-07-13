@@ -41,5 +41,5 @@ testem.log
 .DS_Store
 Thumbs.db
 
-projects/user/src/environments/
-projects/seller/src/environments/
+# projects/user/src/environments/
+# projects/seller/src/environments/
